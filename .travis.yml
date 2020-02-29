@@ -1,0 +1,15 @@
+language: ruby
+rvm:
+- 2.5.3
+cache: bundler
+stages:
+  - test
+  - name: deploy
+    if: type = push AND branch = master
+jobs:
+  include:
+    - stage: test
+    - stage: deploy
+      deploy:
+        api_key:
+          secure: AUtO5yl8YGSlbU9G8qhYeKy1M9gmb0D1cL+kHvL4pHszHgguye0kPRRTXG4QZuR8xxU6rneH4AycG7Mynh3R4vSXmrpKqekUaNsxOhDX1M+p6It60wCoNmVdqFq/+gtBUsVHR3RmcMRI9qEXOe3JWn2DJn0Z4RIPjjJ+ZsVU3NVu2EX9Fcb+E89PP4OUiBH+fhXNuLGkKRYLFOwOEmmIFFn1pQ0TShgqgxdtBVmkKe0ILp2d6q7Ci3iMSC8KPv/hfcX8uYB2asjbkTyb3It0QzQuM9U2eTTfZI4RW5trktPXKFt2TQrrpq16Ixqko9+OY0ch0nmbVKs+mx3Je1E+zdw0DzpbYWzhILa+YSSIj147K6WL5kIIHSLtPGdx+brSeI/UpIrh2PXOvaAnraML+6kZkoayWtQLOEu13irgPfCxr6Z+O5NFJDpBzTA0Cw1RlJmnMPU3NFqurmle/ewJINcaAUl8jb02miZ7b5RNfGUiAeUc8dbez28p/ztyHaUMdPnQ+IXHgWm0xO3DFj6B5jGcpG/vbGJYDqluQ+Zj1FEqIQAIJdzVA2LCivYM724diR7q3/z/9/nBN9/nN73dkU8IkAEtmK1JukQV6g10cS5gMm/nvOFk50MCGR5wzsXP3FprYAoPe5pPQY8rt1hlv5j9EvNHrtFcQTOOMj8pRSE=
