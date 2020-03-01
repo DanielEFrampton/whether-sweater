@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'As a developer of the front-end' do
   describe 'when I send a post request to the forecast endpoint with a city name' do
     before(:each) do
-      allow_any_instance_of(GoogleAPIService).to receive(:geocode).with('denver,co').and_return(file_fixture('denver_geocode.json').read)
+      allow_any_instance_of(GoogleApiService).to receive(:geocode).with('denver,co').and_return(file_fixture('denver_geocode.json').read)
       allow_any_instance_of(DarkSkyService).to receive(:forecast).with('denver,co').and_return(file_fixture('denver_forecast.json').read)
 
       get '/api/v1/forecast=denver,co'
