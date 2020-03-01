@@ -6,7 +6,7 @@ describe 'As a developer of the front-end' do
       allow_any_instance_of(GoogleApiService).to receive(:geocode).with('denver,co').and_return(file_fixture('denver_geocode.json').read)
       allow_any_instance_of(DarkSkyService).to receive(:forecast).with('denver,co').and_return(file_fixture('denver_forecast.json').read)
 
-      get '/api/v1/forecast=denver,co'
+      get '/api/v1/forecast?location=denver,co'
 
       @data = JSON.parse(response.body)
 
