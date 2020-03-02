@@ -8,21 +8,9 @@ class Api::V1::MunchiesController < ApplicationController
     travel_seconds = distance_info['rows'][0]['elements'][0]['duration']['value']
     arrival_timestamp = Time.now.to_i + travel_seconds
 
-    # Get DarkSky forecast at given arrival time
-    forecast_info = DarkSkyService.new.forecast(end_location[:lat],
-                                                end_location[:long],
-                                                arrival_timestamp)
-    forecast = forecast_info['currently']['summary']
-
-    restaurant_info = YelpService.new.restaurant_open_at(end_location[:lat],
-                                                         end_location[:long],
-                                                         params[:food],
-                                                         arrival_timestamp)
-
-    munchies = Munchies.new(forecast,
-                            restaurant_info,
-                            travel_time,
-                            end_location[:city_state])
+    forecast = DarkSkyService.new.simple_future_forecast(end_location[:lat], end_location[:long], arrival_timestamp)
+    restaurant_info = YelpService.new.restaurant_open_at(end_location[:lat], end_location[:long], params[:food], arrival_timestamp)
+    munchies = Munchies.new(forecast, restaurant_info, travel_time, end_location[:city_state])
     render json: MunchiesSerializer.new(munchies)
   end
 end
