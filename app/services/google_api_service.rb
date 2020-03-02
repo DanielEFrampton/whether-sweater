@@ -5,7 +5,8 @@ class GoogleApiService
   end
 
   def distance(start_location, end_location)
-    get_distance(start_location, end_location)
+    data = get_distance(start_location, end_location)
+    format_distance_data(data)
   end
 
   private
@@ -36,5 +37,16 @@ class GoogleApiService
       lat: data['results'][0]['geometry']['location']['lat'],
       long: data['results'][0]['geometry']['location']['lng']
     }
+  end
+
+  def format_distance_data(data)
+    {
+      travel_time: data['rows'][0]['elements'][0]['duration']['text'],
+      arrival_timestamp: arrival_timestamp(data['rows'][0]['elements'][0]['duration']['value'])
+    }
+  end
+
+  def arrival_timestamp(seconds)
+    Time.now.to_i + seconds
   end
 end
