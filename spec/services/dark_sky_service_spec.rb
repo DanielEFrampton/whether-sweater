@@ -1,0 +1,21 @@
+require 'rails_helper'
+
+RSpec.describe DarkSkyService, :vcr do
+  describe 'instance methods' do
+    describe 'geocode' do
+      it 'returns parsed JSON data from DarkSky API for given lat/long' do
+        data = DarkSkyService.new.forecast('39.7392358','-104.990251')
+        expect(data.class).to eq(Hash)
+        expect(data.keys.include?('currently')).to eq(true)
+        expect(data.keys.include?('offset')).to eq(true)
+        expect(data.keys.include?('flags')).to eq(true)
+        expect(data.keys.include?('daily')).to eq(true)
+        expect(data.keys.include?('hourly')).to eq(true)
+        expect(data.keys.include?('minutely')).to eq(true)
+        expect(data.keys.include?('latitude')).to eq(true)
+        expect(data.keys.include?('longitude')).to eq(true)
+        expect(data.keys.include?('timezone')).to eq(true)
+      end
+    end
+  end
+end
