@@ -50,9 +50,9 @@ class Forecast
   end
 
   def tonight_summary
-    if Time.at(@time).utc.to_datetime < 21
+    if unix_to_datetime(@time) < 21
       @hourly_forecasts.find do |hour_info|
-        Time.at(hour_info['time']).utc.to_datetime.hour == 21
+        to_datetime(hour_info['time']).hour == 21
       end['summary']
     else
       @summary
@@ -68,7 +68,13 @@ class Forecast
   def daily_forecasts
     @daily_forecasts.map do |d|
       d.slice!('time','icon','temperatureHigh','temperatureLow','humidity')
-      d.merge('weekday' => Time.at(d['time']).utc.to_datetime.strftime('%A'))
+      d.merge('weekday' => unix_to_datetime(d['time']).strftime('%A'))
     end
+  end
+
+  private
+
+  def unix_to_datetime(unix_timestamp)
+    Time.at(unix_timestamp).utc.to_datetime.new_offset("#{@timezone_offset}:00")
   end
 end
