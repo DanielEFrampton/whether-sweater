@@ -20,9 +20,9 @@ class Forecast
   def initialize(weather_info, location_info)
     @id = nil
 
-    @city = location_info['results'][0]['address_components'][0]['long_name']
-    @state = location_info['results'][0]['address_components'][2]['short_name']
-    @country = location_info['results'][0]['address_components'][3]['long_name']
+    @city = location_info[:city]
+    @state = location_info[:state]
+    @country = location_info[:country]
 
     @time = weather_info['currently']['time']
     @timezone_offset = weather_info['offset']
