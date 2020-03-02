@@ -1,6 +1,11 @@
 class DarkSkyService
-  def forecast(lat, long, time = nil)
-    get_forecast("#{lat},#{long}#{',' + time.to_s if time}")
+  def forecast(lat, long)
+    get_forecast("#{lat},#{long}")
+  end
+
+  def simple_future_forecast(lat, long, time)
+    data = get_forecast("#{lat},#{long}#{',' + time.to_s}")
+    data['currently']['summary']
   end
 
   private

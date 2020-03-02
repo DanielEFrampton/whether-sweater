@@ -17,5 +17,12 @@ RSpec.describe DarkSkyService, :vcr do
         expect(data.keys.include?('timezone')).to eq(true)
       end
     end
+
+    describe 'simple_future_forecast' do
+      it 'returns summary of weather at future time at given lat/long' do
+        data = DarkSkyService.new.simple_future_forecast('39.7392358','-104.990251',1583179830)
+        expect(data).to eq('Clear')
+      end
+    end
   end
 end
