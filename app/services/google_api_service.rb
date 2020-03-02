@@ -10,7 +10,7 @@ class GoogleApiService
   private
 
   def get_geocode(location)
-    response = connection.get('geocode/json?address=denver,co')
+    response = connection.get("geocode/json?address=#{location}")
     JSON.parse(response.body)
   end
 
