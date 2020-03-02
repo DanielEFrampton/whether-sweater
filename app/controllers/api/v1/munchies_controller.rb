@@ -19,10 +19,7 @@ class Api::V1::MunchiesController < ApplicationController
     # Get Yelp info on restaurant at end location open at timestamp
     restaurant_info = YelpService.new.restaurant_open_at(lat, long, params[:food], arrival_timestamp)
 
-    restaurant_name = restaurant_info['businesses'][0]['name']
-    restaurant_address = restaurant_info['businesses'][0]['location']['display_address'].join(', ')
-
-    munchies = Munchies.new(forecast, {name: restaurant_name, address: restaurant_address}, travel_time, end_location)
+    munchies = Munchies.new(forecast, restaurant_info, travel_time, end_location)
     render json: MunchiesSerializer.new(munchies)
   end
 end
