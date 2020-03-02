@@ -1,7 +1,74 @@
 class Forecast
-  attr_reader :id
-  
-  def initialize
+  attr_reader :id,
+              :city,
+              :state,
+              :country,
+              :time,
+              :timezone_offset,
+              :timezone,
+              :temperature,
+              :feelsLike,
+              :day_temperature_high,
+              :day_temperature_low,
+              :summary,
+              :icon,
+              :humidity,
+              :uv_index,
+              :visibility,
+              :today_summary
+
+  def initialize(weather_info, location_info)
     @id = nil
+
+    @city = location_info['results'][0]['address_components'][0]['long_name']
+    @state = location_info['results'][0]['address_components'][2]['short_name']
+    @country = location_info['results'][0]['address_components'][3]['long_name']
+
+    @time = weather_info['currently']['time']
+    @timezone_offset = weather_info['offset']
+    @timezone = weather_info['timezone']
+    @temperature = weather_info['currently']['temperature']
+    @feelsLike = weather_info['currently']['apparentTemperature']
+    @day_temperature_high = weather_info['daily']['data'][0]['temperatureHigh']
+    @day_temperature_low = weather_info['daily']['data'][0]['temperatureLow']
+    @summary = weather_info['currently']['summary']
+    @icon = weather_info['currently']['icon']
+    @humidity = weather_info['currently']['humidity']
+    @uv_index = weather_info['currently']['uvIndex']
+    @visibility = weather_info['currently']['visibility']
+    @today_summary = weather_info['daily']['data'][0]['summary']
+    @hourly_forecasts = weather_info['hourly']['data'].slice(1,8)
+    @daily_forecasts = weather_info['daily']['data'].slice(1,5)
+  end
+
+  def uv_exposure_category
+    return 'low' if [0,1,2].include?(@uv_index)
+    return 'moderate' if [3,4,5].include?(@uv_index)
+    return 'high' if [6,7].include?(@uv_index)
+    return 'very high' if [8,9,10].include?(@uv_index)
+    return 'extreme' if @uv_index > 10
+  end
+
+  def tonight_summary
+    if Time.at(@time).utc.to_datetime < 21
+      @hourly_forecasts.find do |hour_info|
+        Time.at(hour_info['time']).utc.to_datetime.hour == 21
+      end['summary']
+    else
+      @summary
+    end
+  end
+
+  def hourly_forecasts
+    @hourly_forecasts.map do |h|
+      h.slice('time','icon','temperature')
+    end
+  end
+
+  def daily_forecasts
+    @daily_forecasts.map do |d|
+      d.slice!('time','icon','temperatureHigh','temperatureLow','humidity')
+      d.merge('weekday' => Time.at(d['time']).utc.to_datetime.strftime('%A'))
+    end
   end
 end
