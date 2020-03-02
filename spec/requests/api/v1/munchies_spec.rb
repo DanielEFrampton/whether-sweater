@@ -12,7 +12,7 @@ describe 'as a user' do
       expect(@attributes).to include(
         'end_location' => 'Pueblo, CO',
         'travel_time' => '1 hours 48 min',
-        'forecast' => 'Cloudy with a chance of meatballs'
+        'forecast' => 'Cloudy with a chance of meatballs',
         'restaurant' => {
           'name' => 'Chinese Restaurant',
           'address' => '4602 N. Elizabeth St, Ste 120, Pueblo, CO 81008'
