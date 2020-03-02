@@ -21,7 +21,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=UTF-8
       Date:
-      - Mon, 02 Mar 2020 18:03:41 GMT
+      - Mon, 02 Mar 2020 18:07:08 GMT
       Pragma:
       - no-cache
       Expires:
@@ -39,7 +39,7 @@ http_interactions:
       X-Frame-Options:
       - SAMEORIGIN
       Server-Timing:
-      - gfet4t7; dur=37
+      - gfet4t7; dur=36
       Alt-Svc:
       - quic=":443"; ma=2592000; v="46,43",h3-Q050=":443"; ma=2592000,h3-Q049=":443";
         ma=2592000,h3-Q048=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443";
@@ -109,7 +109,7 @@ http_interactions:
            "status" : "OK"
         }
     http_version: null
-  recorded_at: Mon, 02 Mar 2020 18:03:41 GMT
+  recorded_at: Mon, 02 Mar 2020 18:07:08 GMT
 - request:
     method: get
     uri: https://maps.googleapis.com/maps/api/distancematrix/json?destinations=pueblo,co&key=<GOOGLE_API_KEY>&origins=denver,co&units=imperial
@@ -131,7 +131,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=UTF-8
       Date:
-      - Mon, 02 Mar 2020 18:03:41 GMT
+      - Mon, 02 Mar 2020 18:07:08 GMT
       Pragma:
       - no-cache
       Expires:
@@ -147,7 +147,7 @@ http_interactions:
       X-Frame-Options:
       - SAMEORIGIN
       Server-Timing:
-      - gfet4t7; dur=62
+      - gfet4t7; dur=51
       Alt-Svc:
       - quic=":443"; ma=2592000; v="46,43",h3-Q050=":443"; ma=2592000,h3-Q049=":443";
         ma=2592000,h3-Q048=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443";
@@ -180,10 +180,10 @@ http_interactions:
            "status" : "OK"
         }
     http_version: null
-  recorded_at: Mon, 02 Mar 2020 18:03:41 GMT
+  recorded_at: Mon, 02 Mar 2020 18:07:08 GMT
 - request:
     method: get
-    uri: https://api.darksky.net/forecast/<DARK_SKY_SECRET>/38.2544472,-104.6091409,1583178677
+    uri: https://api.darksky.net/forecast/<DARK_SKY_SECRET>/38.2544472,-104.6091409,1583178884
     body:
       encoding: US-ASCII
       string: ''
@@ -200,7 +200,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 02 Mar 2020 18:03:41 GMT
+      - Mon, 02 Mar 2020 18:07:08 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -208,32 +208,32 @@ http_interactions:
       Connection:
       - keep-alive
       X-Authentication-Time:
-      - 637ms
+      - 693ms
       X-Forecast-Api-Calls:
-      - '20'
+      - '23'
       Cache-Control:
       - max-age=3600
       Expires:
-      - Mon, 02 Mar 2020 19:03:41 +0000
+      - Mon, 02 Mar 2020 19:07:08 +0000
       X-Response-Time:
-      - 32.553ms
+      - 19.531ms
       Vary:
       - Accept-Encoding
     body:
       encoding: ASCII-8BIT
-      string: '{"latitude":38.2544472,"longitude":-104.6091409,"timezone":"America/Denver","currently":{"time":1583178677,"summary":"Clear","icon":"clear-day","precipIntensity":0.002,"precipProbability":0.03,"precipType":"rain","temperature":55.88,"apparentTemperature":55.9,"dewPoint":25.85,"humidity":0.31,"pressure":1005.9,"windSpeed":5.82,"windGust":16.21,"windBearing":235,"cloudCover":0.1,"uvIndex":4,"visibility":10,"ozone":376.2},"hourly":{"summary":"Flurries
+      string: '{"latitude":38.2544472,"longitude":-104.6091409,"timezone":"America/Denver","currently":{"time":1583178884,"summary":"Clear","icon":"clear-day","precipIntensity":0.002,"precipProbability":0.03,"precipType":"rain","temperature":56.08,"apparentTemperature":56.09,"dewPoint":25.66,"humidity":0.31,"pressure":1005.8,"windSpeed":5.89,"windGust":16.42,"windBearing":236,"cloudCover":0.09,"uvIndex":4,"visibility":10,"ozone":375.8},"hourly":{"summary":"Flurries
         this morning.","icon":"rain","data":[{"time":1583132400,"summary":"Overcast","icon":"cloudy","precipIntensity":0,"precipProbability":0,"temperature":38.32,"apparentTemperature":32.04,"dewPoint":31.31,"humidity":0.76,"pressure":1016.4,"windSpeed":8.99,"windGust":15.25,"windBearing":35,"cloudCover":0.98,"uvIndex":0,"visibility":10,"ozone":360.2},{"time":1583136000,"summary":"Overcast","icon":"cloudy","precipIntensity":0,"precipProbability":0,"temperature":36.64,"apparentTemperature":32.19,"dewPoint":32.77,"humidity":0.86,"pressure":1017.2,"windSpeed":5.42,"windGust":11.95,"windBearing":39,"cloudCover":0.99,"uvIndex":0,"visibility":3.162,"ozone":360.4},{"time":1583139600,"summary":"Overcast","icon":"cloudy","precipIntensity":0,"precipProbability":0,"temperature":34.99,"apparentTemperature":31.12,"dewPoint":32.76,"humidity":0.91,"pressure":1017.1,"windSpeed":4.42,"windGust":9.64,"windBearing":71,"cloudCover":1,"uvIndex":0,"visibility":3.412,"ozone":362.5},{"time":1583143200,"summary":"Overcast","icon":"cloudy","precipIntensity":0.0244,"precipProbability":0.13,"precipType":"snow","precipAccumulation":0.1279,"temperature":34.21,"apparentTemperature":29.53,"dewPoint":31.89,"humidity":0.91,"pressure":1016.5,"windSpeed":5.17,"windGust":10.78,"windBearing":80,"cloudCover":0.97,"uvIndex":0,"visibility":7.763,"ozone":368.5},{"time":1583146800,"summary":"Overcast","icon":"cloudy","precipIntensity":0.0084,"precipProbability":0.06,"precipType":"snow","precipAccumulation":0.0476,"temperature":33.64,"apparentTemperature":29.01,"dewPoint":31.22,"humidity":0.91,"pressure":1015.7,"windSpeed":4.99,"windGust":10.06,"windBearing":100,"cloudCover":0.97,"uvIndex":0,"visibility":8.393,"ozone":376.6},{"time":1583150400,"summary":"Overcast","icon":"cloudy","precipIntensity":0.0037,"precipProbability":0.04,"precipType":"snow","precipAccumulation":0.023,"temperature":32.83,"apparentTemperature":28.6,"dewPoint":30.32,"humidity":0.9,"pressure":1015.3,"windSpeed":4.42,"windGust":8.61,"windBearing":127,"cloudCover":0.98,"uvIndex":0,"visibility":8.607,"ozone":378.2},{"time":1583154000,"summary":"Overcast","icon":"cloudy","precipIntensity":0,"precipProbability":0,"temperature":31.9,"apparentTemperature":27.33,"dewPoint":29.71,"humidity":0.92,"pressure":1015.3,"windSpeed":4.61,"windGust":7.76,"windBearing":134,"cloudCover":0.97,"uvIndex":0,"visibility":10,"ozone":378.6},{"time":1583157600,"summary":"Mostly
         Cloudy","icon":"partly-cloudy-day","precipIntensity":0,"precipProbability":0,"temperature":31.43,"apparentTemperature":26.65,"dewPoint":29.46,"humidity":0.92,"pressure":1015,"windSpeed":4.74,"windGust":7.21,"windBearing":144,"cloudCover":0.84,"uvIndex":0,"visibility":10,"ozone":377},{"time":1583161200,"summary":"Mostly
         Cloudy","icon":"partly-cloudy-day","precipIntensity":0,"precipProbability":0,"temperature":31.53,"apparentTemperature":26.68,"dewPoint":28.98,"humidity":0.9,"pressure":1014.6,"windSpeed":4.83,"windGust":6.52,"windBearing":153,"cloudCover":0.76,"uvIndex":0,"visibility":10,"ozone":376.9},{"time":1583164800,"summary":"Mostly
-        Cloudy","icon":"partly-cloudy-day","precipIntensity":0,"precipProbability":0,"temperature":35.09,"apparentTemperature":31.24,"dewPoint":29.49,"humidity":0.8,"pressure":1013.2,"windSpeed":4.41,"windGust":6.93,"windBearing":147,"cloudCover":0.62,"uvIndex":1,"visibility":10,"ozone":380.7},{"time":1583168400,"summary":"Drizzle","icon":"rain","precipIntensity":0.0101,"precipProbability":1,"precipType":"rain","temperature":40.01,"apparentTemperature":37.52,"dewPoint":31.04,"humidity":0.7,"pressure":1011.5,"windSpeed":3.8,"windGust":6.17,"windBearing":192,"cloudCover":0.4,"uvIndex":2,"visibility":10,"ozone":385.8},{"time":1583172000,"summary":"Clear","icon":"clear-day","precipIntensity":0.0016,"precipProbability":0.08,"precipType":"rain","temperature":44.37,"apparentTemperature":42.23,"dewPoint":31.47,"humidity":0.6,"pressure":1009.3,"windSpeed":4.17,"windGust":8.99,"windBearing":226,"cloudCover":0.3,"uvIndex":3,"visibility":10,"ozone":387.6},{"time":1583175600,"summary":"Clear","icon":"clear-day","precipIntensity":0.0015,"precipProbability":0.05,"precipType":"rain","temperature":51.09,"apparentTemperature":51.09,"dewPoint":29.43,"humidity":0.43,"pressure":1007.5,"windSpeed":5.03,"windGust":13.11,"windBearing":226,"cloudCover":0.2,"uvIndex":4,"visibility":10,"ozone":383.1},{"time":1583179200,"summary":"Clear","icon":"clear-day","precipIntensity":0.002,"precipProbability":0.03,"precipType":"rain","temperature":56.32,"apparentTemperature":56.32,"dewPoint":25.41,"humidity":0.3,"pressure":1005.7,"windSpeed":6.02,"windGust":16.74,"windBearing":239,"cloudCover":0.08,"uvIndex":4,"visibility":10,"ozone":375.1},{"time":1583182800,"summary":"Clear","icon":"clear-day","precipIntensity":0.0012,"precipProbability":0.02,"precipType":"rain","temperature":55.8,"apparentTemperature":55.8,"dewPoint":24.28,"humidity":0.29,"pressure":1004.8,"windSpeed":8.02,"windGust":20.46,"windBearing":304,"cloudCover":0.03,"uvIndex":3,"visibility":10,"ozone":368.2},{"time":1583186400,"summary":"Clear","icon":"clear-day","precipIntensity":0,"precipProbability":0,"temperature":59.85,"apparentTemperature":59.85,"dewPoint":18.05,"humidity":0.19,"pressure":1004.2,"windSpeed":10.64,"windGust":21.82,"windBearing":157,"cloudCover":0.04,"uvIndex":2,"visibility":10,"ozone":364.5},{"time":1583190000,"summary":"Clear","icon":"clear-day","precipIntensity":0,"precipProbability":0,"temperature":58.72,"apparentTemperature":58.72,"dewPoint":15.08,"humidity":0.18,"pressure":1003.8,"windSpeed":13.12,"windGust":24.37,"windBearing":337,"cloudCover":0,"uvIndex":1,"visibility":10,"ozone":361.7},{"time":1583193600,"summary":"Clear","icon":"clear-day","precipIntensity":0,"precipProbability":0,"temperature":52.04,"apparentTemperature":52.04,"dewPoint":22.95,"humidity":0.32,"pressure":1004.5,"windSpeed":10.57,"windGust":25.09,"windBearing":293,"cloudCover":0.01,"uvIndex":0,"visibility":10,"ozone":358.6},{"time":1583197200,"summary":"Clear","icon":"clear-night","precipIntensity":0,"precipProbability":0,"temperature":52.59,"apparentTemperature":52.59,"dewPoint":15.93,"humidity":0.23,"pressure":1006.1,"windSpeed":11.34,"windGust":18.7,"windBearing":262,"cloudCover":0.02,"uvIndex":0,"visibility":10,"ozone":354.3},{"time":1583200800,"summary":"Clear","icon":"clear-night","precipIntensity":0.0005,"precipProbability":0.01,"precipType":"rain","temperature":48.01,"apparentTemperature":43.99,"dewPoint":19.21,"humidity":0.32,"pressure":1007.8,"windSpeed":8.86,"windGust":12.24,"windBearing":304,"cloudCover":0.02,"uvIndex":0,"visibility":10,"ozone":349.7},{"time":1583204400,"summary":"Clear","icon":"clear-night","precipIntensity":0,"precipProbability":0,"temperature":42.07,"apparentTemperature":37.49,"dewPoint":22.96,"humidity":0.46,"pressure":1010.7,"windSpeed":7.27,"windGust":8.72,"windBearing":304,"cloudCover":0.03,"uvIndex":0,"visibility":10,"ozone":346.3},{"time":1583208000,"summary":"Clear","icon":"clear-night","precipIntensity":0.0012,"precipProbability":0.01,"precipType":"rain","temperature":41.73,"apparentTemperature":37.11,"dewPoint":20.87,"humidity":0.43,"pressure":1011.4,"windSpeed":7.19,"windGust":7.57,"windBearing":280,"cloudCover":0.02,"uvIndex":0,"visibility":10,"ozone":345.3},{"time":1583211600,"summary":"Clear","icon":"clear-night","precipIntensity":0,"precipProbability":0,"temperature":39.38,"apparentTemperature":34.53,"dewPoint":19.98,"humidity":0.45,"pressure":1012.2,"windSpeed":6.76,"windGust":7.39,"windBearing":283,"cloudCover":0.02,"uvIndex":0,"visibility":10,"ozone":345.7},{"time":1583215200,"summary":"Clear","icon":"clear-night","precipIntensity":0.0009,"precipProbability":0.01,"precipType":"rain","temperature":35.29,"apparentTemperature":29.74,"dewPoint":19.61,"humidity":0.52,"pressure":1014.3,"windSpeed":6.59,"windGust":7.15,"windBearing":284,"cloudCover":0.02,"uvIndex":0,"visibility":10,"ozone":346.2}]},"daily":{"data":[{"time":1583132400,"summary":"Flurries
+        Cloudy","icon":"partly-cloudy-day","precipIntensity":0,"precipProbability":0,"temperature":35.09,"apparentTemperature":31.24,"dewPoint":29.49,"humidity":0.8,"pressure":1013.2,"windSpeed":4.41,"windGust":6.93,"windBearing":147,"cloudCover":0.62,"uvIndex":1,"visibility":10,"ozone":380.7},{"time":1583168400,"summary":"Drizzle","icon":"rain","precipIntensity":0.0101,"precipProbability":1,"precipType":"rain","temperature":40.01,"apparentTemperature":37.52,"dewPoint":31.04,"humidity":0.7,"pressure":1011.5,"windSpeed":3.8,"windGust":6.17,"windBearing":192,"cloudCover":0.4,"uvIndex":2,"visibility":10,"ozone":385.8},{"time":1583172000,"summary":"Clear","icon":"clear-day","precipIntensity":0.0016,"precipProbability":0.08,"precipType":"rain","temperature":44.37,"apparentTemperature":42.23,"dewPoint":31.47,"humidity":0.6,"pressure":1009.3,"windSpeed":4.17,"windGust":8.99,"windBearing":226,"cloudCover":0.3,"uvIndex":3,"visibility":10,"ozone":387.6},{"time":1583175600,"summary":"Clear","icon":"clear-day","precipIntensity":0.0015,"precipProbability":0.05,"precipType":"rain","temperature":51.09,"apparentTemperature":51.09,"dewPoint":29.43,"humidity":0.43,"pressure":1007.5,"windSpeed":5.03,"windGust":13.11,"windBearing":226,"cloudCover":0.2,"uvIndex":4,"visibility":10,"ozone":383.1},{"time":1583179200,"summary":"Clear","icon":"clear-day","precipIntensity":0.002,"precipProbability":0.03,"precipType":"rain","temperature":56.32,"apparentTemperature":56.32,"dewPoint":25.41,"humidity":0.3,"pressure":1005.7,"windSpeed":6.02,"windGust":16.74,"windBearing":239,"cloudCover":0.08,"uvIndex":4,"visibility":10,"ozone":375.1},{"time":1583182800,"summary":"Clear","icon":"clear-day","precipIntensity":0.0012,"precipProbability":0.02,"precipType":"rain","temperature":55.8,"apparentTemperature":55.8,"dewPoint":24.29,"humidity":0.29,"pressure":1004.8,"windSpeed":8.02,"windGust":20.46,"windBearing":304,"cloudCover":0.03,"uvIndex":3,"visibility":10,"ozone":368.2},{"time":1583186400,"summary":"Clear","icon":"clear-day","precipIntensity":0,"precipProbability":0,"temperature":59.85,"apparentTemperature":59.85,"dewPoint":18.05,"humidity":0.19,"pressure":1004.2,"windSpeed":10.64,"windGust":21.82,"windBearing":157,"cloudCover":0.04,"uvIndex":2,"visibility":10,"ozone":364.5},{"time":1583190000,"summary":"Clear","icon":"clear-day","precipIntensity":0,"precipProbability":0,"temperature":58.72,"apparentTemperature":58.72,"dewPoint":15.08,"humidity":0.18,"pressure":1003.8,"windSpeed":13.12,"windGust":24.37,"windBearing":337,"cloudCover":0,"uvIndex":1,"visibility":10,"ozone":361.7},{"time":1583193600,"summary":"Clear","icon":"clear-day","precipIntensity":0,"precipProbability":0,"temperature":52.04,"apparentTemperature":52.04,"dewPoint":22.95,"humidity":0.32,"pressure":1004.5,"windSpeed":10.57,"windGust":25.09,"windBearing":293,"cloudCover":0.01,"uvIndex":0,"visibility":10,"ozone":358.6},{"time":1583197200,"summary":"Clear","icon":"clear-night","precipIntensity":0,"precipProbability":0,"temperature":52.59,"apparentTemperature":52.59,"dewPoint":15.93,"humidity":0.23,"pressure":1006.1,"windSpeed":11.34,"windGust":18.7,"windBearing":262,"cloudCover":0.02,"uvIndex":0,"visibility":10,"ozone":354.3},{"time":1583200800,"summary":"Clear","icon":"clear-night","precipIntensity":0.0005,"precipProbability":0.01,"precipType":"rain","temperature":48.01,"apparentTemperature":43.99,"dewPoint":19.21,"humidity":0.32,"pressure":1007.8,"windSpeed":8.86,"windGust":12.24,"windBearing":304,"cloudCover":0.02,"uvIndex":0,"visibility":10,"ozone":349.7},{"time":1583204400,"summary":"Clear","icon":"clear-night","precipIntensity":0,"precipProbability":0,"temperature":42.07,"apparentTemperature":37.49,"dewPoint":22.96,"humidity":0.46,"pressure":1010.7,"windSpeed":7.27,"windGust":8.72,"windBearing":304,"cloudCover":0.03,"uvIndex":0,"visibility":10,"ozone":346.3},{"time":1583208000,"summary":"Clear","icon":"clear-night","precipIntensity":0.0012,"precipProbability":0.01,"precipType":"rain","temperature":41.73,"apparentTemperature":37.11,"dewPoint":20.87,"humidity":0.43,"pressure":1011.4,"windSpeed":7.19,"windGust":7.57,"windBearing":280,"cloudCover":0.02,"uvIndex":0,"visibility":10,"ozone":345.3},{"time":1583211600,"summary":"Clear","icon":"clear-night","precipIntensity":0,"precipProbability":0,"temperature":39.38,"apparentTemperature":34.53,"dewPoint":19.98,"humidity":0.45,"pressure":1012.2,"windSpeed":6.76,"windGust":7.39,"windBearing":283,"cloudCover":0.02,"uvIndex":0,"visibility":10,"ozone":345.7},{"time":1583215200,"summary":"Clear","icon":"clear-night","precipIntensity":0.0009,"precipProbability":0.01,"precipType":"rain","temperature":35.29,"apparentTemperature":29.74,"dewPoint":19.61,"humidity":0.52,"pressure":1014.3,"windSpeed":6.59,"windGust":7.15,"windBearing":284,"cloudCover":0.02,"uvIndex":0,"visibility":10,"ozone":346.2}]},"daily":{"data":[{"time":1583132400,"summary":"Flurries
         in the morning.","icon":"rain","sunriseTime":1583155740,"sunsetTime":1583196900,"moonPhase":0.26,"precipIntensity":0.0025,"precipIntensityMax":0.0245,"precipIntensityMaxError":0.0604,"precipIntensityMaxTime":1583143380,"precipProbability":1,"precipType":"rain","temperatureHigh":60.57,"temperatureHighError":11.64,"temperatureHighTime":1583187480,"temperatureLow":26.51,"temperatureLowError":11.61,"temperatureLowTime":1583236680,"apparentTemperatureHigh":60.07,"apparentTemperatureHighTime":1583187480,"apparentTemperatureLow":22.77,"apparentTemperatureLowTime":1583236560,"dewPoint":26.04,"humidity":0.59,"pressure":1011.1,"windSpeed":6.67,"windGust":25.45,"windGustTime":1583192580,"windBearing":269,"cloudCover":0.43,"uvIndex":4,"uvIndexTime":1583177880,"visibility":9.172,"ozone":366.9,"temperatureMin":30.72,"temperatureMinError":11.62,"temperatureMinTime":1583159760,"temperatureMax":60.57,"temperatureMaxError":11.65,"temperatureMaxTime":1583187480,"apparentTemperatureMin":26.31,"apparentTemperatureMinTime":1583159880,"apparentTemperatureMax":60.07,"apparentTemperatureMaxTime":1583187480}]},"flags":{"sources":["cmc","gfs","hrrr","icon","isd","madis","nam","sref"],"nearest-station":0.007,"units":"us"},"offset":-7}
 
 '
     http_version: null
-  recorded_at: Mon, 02 Mar 2020 18:03:41 GMT
+  recorded_at: Mon, 02 Mar 2020 18:07:08 GMT
 - request:
     method: get
-    uri: https://api.yelp.com/v3/businesses/search?latitude=38.2544472&limit=1&longitude=-104.6091409&open_at=1583178677&term=chinese
+    uri: https://api.yelp.com/v3/businesses/search?latitude=38.2544472&limit=1&longitude=-104.6091409&open_at=1583178884&term=chinese
     body:
       encoding: US-ASCII
       string: ''
@@ -258,27 +258,27 @@ http_interactions:
       Content-Type:
       - application/json
       X-Routing-Service:
-      - 10-69-228-133-uswest2cprod; site=public_api_v3
+      - 10-64-116-2-uswest1aprod; site=public_api_v3
       Ratelimit-Remaining:
-      - '4982'
+      - '4981'
       X-B3-Sampled:
       - '0'
       X-Zipkin-Id:
-      - 275d3ad934e9c1e6
+      - d379c0fd2b70b8e4
       Ratelimit-Resettime:
       - '2020-03-03T00:00:00+00:00'
       Ratelimit-Dailylimit:
       - '5000'
       X-Proxied:
-      - 10-69-140-124-uswest2bprod
+      - 10-64-146-52-uswest1bprod
       Accept-Ranges:
       - bytes
       Date:
-      - Mon, 02 Mar 2020 18:03:42 GMT
+      - Mon, 02 Mar 2020 18:07:09 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-den19630-DEN
+      - cache-den19639-DEN
       X-Cache:
       - MISS
       X-Cache-Hits:
@@ -302,5 +302,5 @@ http_interactions:
         "distance": 3386.914032680166}], "total": 10, "region": {"center": {"longitude":
         -104.6091409, "latitude": 38.2544472}}}'
     http_version: null
-  recorded_at: Mon, 02 Mar 2020 18:03:42 GMT
+  recorded_at: Mon, 02 Mar 2020 18:07:09 GMT
 recorded_with: VCR 5.1.0
