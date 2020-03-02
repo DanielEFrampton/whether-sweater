@@ -23,7 +23,9 @@ VCR.configure do |config|
   config.cassette_library_dir = 'spec/cassettes'
   config.hook_into :webmock
   config.configure_rspec_metadata!
-  config.filter_sensitive_data("<GITHUB_API_KEY>") { ENV['GITHUB_API_KEY'] }
+  config.filter_sensitive_data("<DARK_SKY_SECRET>") { ENV['DARK_SKY_SECRET'] }
+  config.filter_sensitive_data("<GOOGLE_API_KEY>") { ENV['GOOGLE_API_KEY'] }
+  config.filter_sensitive_data("<YELP_API_KEY>") { ENV['YELP_API_KEY'] }
 end
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
