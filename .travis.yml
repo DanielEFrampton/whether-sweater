@@ -2,8 +2,12 @@ language: ruby
 rvm:
 - 2.5.3
 cache: bundler
+services:
+- postgresql
 before_install:
 - gem install bundler
+before_script:
+- psql -c 'create database whether_sweater_test;' -U postgres
 stages:
   - test
   - name: deploy
