@@ -6,6 +6,7 @@ class DarkSkyService
   private
 
     def get_forecast(lat_long)
-      # build out via TDD via model test
+      response = Faraday.get("https://api.darksky.net/forecast/#{ENV['DARK_SKY_SECRET']}/#{lat_long}")
+      JSON.parse(response.body)
     end
 end
