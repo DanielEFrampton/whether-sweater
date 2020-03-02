@@ -1,7 +1,7 @@
 class YelpService
   def restaurant_open_at(lat, long, food_type, timestamp)
     response = get_restaurant_data(lat, long, food_type, timestamp)
-    JSON.parse(response.body)
+    format_response(JSON.parse(response.body))
   end
 
   private
@@ -16,5 +16,11 @@ class YelpService
 
       request.headers['Authorization'] = "Bearer #{ENV['YELP_API_KEY']}"
     end
+  end
+
+  def format_response(restaurant_data)
+    { name: restaurant_data['businesses'][0]['name'],
+      address: restaurant_data['businesses'][0]['location']['display_address'].join(', ')
+    }
   end
 end
