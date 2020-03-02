@@ -3,7 +3,13 @@ require 'rails_helper'
 describe Forecast do
   describe 'instance methods' do
     describe 'tonight_summary' do
-      
+      it 'should return weather summary of 9pm hour if before 9pm, or current hour if after 9pm but before midnight' do
+        location_info = JSON.parse(file_fixture('denver_geocode.json').read)
+        weather_info = JSON.parse(file_fixture('denver_forecast.json').read)
+
+        forecast = Forecast.new(weather_info, location_info)
+        expect(forecast.tonight_summary).to eq('Overcast')
+      end
     end
 
     describe 'hourly_forecasts' do
