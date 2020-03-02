@@ -1,10 +1,6 @@
 class Api::V1::MunchiesController < ApplicationController
   def show
-    # Get Google Geocode API info
-    end_location_info = GoogleApiService.new.geocode(params[:end])
-    end_location = end_location_info['results'][0]['formatted_address']
-    lat = end_location_info['results'][0]['geometry']['location']['lat']
-    long = end_location_info['results'][0]['geometry']['location']['lng']
+    end_location = GoogleApiService.new.geocode(params[:end])
 
     # Get Google Distance Matrix API info (doesn't account for time zone)
     distance_info = GoogleApiService.new.distance(params[:start], params[:end])
@@ -13,13 +9,20 @@ class Api::V1::MunchiesController < ApplicationController
     arrival_timestamp = Time.now.to_i + travel_seconds
 
     # Get DarkSky forecast at given arrival time
-    forecast_info = DarkSkyService.new.forecast(lat, long, arrival_timestamp)
+    forecast_info = DarkSkyService.new.forecast(end_location[:lat],
+                                                end_location[:long],
+                                                arrival_timestamp)
     forecast = forecast_info['currently']['summary']
 
-    # Get Yelp info on restaurant at end location open at timestamp
-    restaurant_info = YelpService.new.restaurant_open_at(lat, long, params[:food], arrival_timestamp)
+    restaurant_info = YelpService.new.restaurant_open_at(end_location[:lat],
+                                                         end_location[:long],
+                                                         params[:food],
+                                                         arrival_timestamp)
 
-    munchies = Munchies.new(forecast, restaurant_info, travel_time, end_location)
+    munchies = Munchies.new(forecast,
+                            restaurant_info,
+                            travel_time,
+                            end_location[:city_state])
     render json: MunchiesSerializer.new(munchies)
   end
 end
