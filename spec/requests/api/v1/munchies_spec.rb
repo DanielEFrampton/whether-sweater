@@ -10,12 +10,12 @@ describe 'as a user', :vcr => { :record => :new_episodes } do
 
     it 'I receieve a JSON:API response with end location, travel time, forecast at arrival, and open restaurant' do
       expect(@attributes).to include(
-        'end_location' => 'Pueblo, CO',
-        'travel_time' => '1 hours 48 min',
-        'forecast' => 'Cloudy with a chance of meatballs',
+        'end_location' => 'Pueblo, CO, USA',
+        'travel_time' => '1 hour 48 mins',
+        'forecast' => 'Clear',
         'restaurant' => {
-          'name' => 'Chinese Restaurant',
-          'address' => '4602 N. Elizabeth St, Ste 120, Pueblo, CO 81008'
+          'name' => "Kan's Kitchen",
+          'address' => '1620 S Prairie Ave, Pueblo, CO 81005'
         }
       )
     end
