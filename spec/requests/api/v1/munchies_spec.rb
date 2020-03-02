@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'as a user', :vcr => { :record => :new_episodes } do
+describe 'as a user', :vcr do
   describe 'when I send a request to munchies endpoint with start and end locations and food type' do
     before(:each) do
       get '/api/v1/munchies?start=denver,co&end=pueblo,co&food=chinese'
