@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'as a user', :vcr do
   describe 'when I send a request to munchies endpoint with start and end locations and food type' do
     before(:each) do
+      allow(Time).to receive(:now).and_return(Time.parse('2020-03-02 11:22:54 -0700'))
       get '/api/v1/munchies?start=denver,co&end=pueblo,co&food=chinese'
       parsed = JSON.parse(response.body)
       @attributes = parsed['data']['attributes']
