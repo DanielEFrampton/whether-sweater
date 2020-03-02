@@ -1,5 +1,5 @@
 class Munchies
-  attr_reader :id, :forecast, :travel_time, :restaurant
+  attr_reader :id, :forecast, :travel_time, :restaurant, :end_location
 
   def initialize(forecast, restaurant_info, travel_time, end_location)
     @id = nil
