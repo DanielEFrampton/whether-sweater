@@ -6,7 +6,7 @@ class Api::V1::SessionsController < ApplicationController
                                        detail: 'Invalid email.',
                                        status: credential_failure_status,
                                        parameter: 'email').errors,
-                   status: credential_failure_status
+             status: credential_failure_status
     elsif user.authenticate(params[:password])
       render json: UserSerializer.new(user)
     else
@@ -15,13 +15,13 @@ class Api::V1::SessionsController < ApplicationController
                                        detail: 'Invalid password.',
                                        status: credential_failure_status,
                                        parameter: 'password').errors,
-                   status: credential_failure_status
+             status: credential_failure_status
     end
   end
 
   private
 
-  def credential_failure_status
-    400
-  end
+    def credential_failure_status
+      400
+    end
 end

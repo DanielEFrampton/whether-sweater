@@ -20,7 +20,7 @@ class Api::V1::RoadTripController < ApplicationController
 
   private
 
-  def format_location(string)
-    string.gsub(',',', ')
-  end
+    def format_location(string)
+      string.gsub(',', ', ')
+    end
 end
