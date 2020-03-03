@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'As a developer of the front-end' do
+describe 'As a developer of the front-end', :vcr do
   describe 'when I send a post request to the forecast endpoint with a city name' do
     before(:each) do
       denver_geocode_fixture = JSON.parse(file_fixture('denver_geocode.json').read)

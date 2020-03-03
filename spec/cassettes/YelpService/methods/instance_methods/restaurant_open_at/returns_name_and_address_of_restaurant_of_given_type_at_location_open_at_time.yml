@@ -1,0 +1,75 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.yelp.com/v3/businesses/search?latitude=38.2544472&limit=1&longitude=-104.6091409&open_at=1583179426&term=chinese
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.0.0
+      Authorization:
+      - Bearer <YELP_API_KEY>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Content-Type:
+      - application/json
+      X-Routing-Service:
+      - 10-69-195-228-uswest2cprod; site=public_api_v3
+      Ratelimit-Remaining:
+      - '4979'
+      X-B3-Sampled:
+      - '0'
+      X-Zipkin-Id:
+      - 89a940ab7d89178a
+      Ratelimit-Resettime:
+      - '2020-03-03T00:00:00+00:00'
+      Ratelimit-Dailylimit:
+      - '5000'
+      X-Proxied:
+      - 10-69-140-124-uswest2bprod
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Mon, 02 Mar 2020 18:18:27 GMT
+      Via:
+      - 1.1 varnish
+      X-Served-By:
+      - cache-den19651-DEN
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"businesses": [{"id": "M4MwxQAA58B7ENV8ootI-w", "alias": "kans-kitchen-pueblo",
+        "name": "Kan''s Kitchen", "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/ZZVNpsvc_x6p5iY8CCpzUg/o.jpg",
+        "is_closed": false, "url": "https://www.yelp.com/biz/kans-kitchen-pueblo?adjust_creative=ZAiMkgPaBoMS_QEQd2RsCg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=ZAiMkgPaBoMS_QEQd2RsCg",
+        "review_count": 17, "categories": [{"alias": "chinese", "title": "Chinese"},
+        {"alias": "hotdogs", "title": "Fast Food"}], "rating": 4.5, "coordinates":
+        {"latitude": 38.2401504516602, "longitude": -104.643249511719}, "transactions":
+        ["delivery"], "price": "$", "location": {"address1": "1620 S Prairie Ave",
+        "address2": null, "address3": null, "city": "Pueblo", "zip_code": "81005",
+        "country": "US", "state": "CO", "display_address": ["1620 S Prairie Ave",
+        "Pueblo, CO 81005"]}, "phone": "+17195660209", "display_phone": "(719) 566-0209",
+        "distance": 3386.914032680166}], "total": 10, "region": {"center": {"longitude":
+        -104.6091409, "latitude": 38.2544472}}}'
+    http_version: null
+  recorded_at: Mon, 02 Mar 2020 18:18:27 GMT
+recorded_with: VCR 5.1.0
