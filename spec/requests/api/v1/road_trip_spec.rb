@@ -4,10 +4,11 @@ describe 'as a front-end developer', :vcr do
   describe 'when I send a post request to the road_trip endpoint' do
     describe 'with valid API key' do
       before(:each) do
+        user = create(:user)
         allow(Time).to receive(:now).and_return(Time.parse('2020-03-03 13:31:31 -0700'))
         post '/api/v1/road_trip', params: {"origin": "Denver,CO",
                                            "destination": "Pueblo,CO",
-                                           "api_key": "jgn983hy48thw9begh98h4539h4"}
+                                           "api_key": "#{user.api_key}"}
         @status_code = response.status
         @response = JSON.parse(response.body)
       end
