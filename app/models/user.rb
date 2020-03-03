@@ -3,4 +3,8 @@ class User < ApplicationRecord
 
   has_secure_password
   has_secure_token :api_key
+
+  def self.authenticate_token(token)
+    where(api_key: token).any?
+  end
 end
