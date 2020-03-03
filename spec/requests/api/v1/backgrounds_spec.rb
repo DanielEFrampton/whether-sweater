@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'as a front-end developer', :vcr do
   describe 'when I send a get request to the backgrounds endpoint with a location' do
     before(:each) do
-      get '/backgrounds?location=indianapolis,in'
+      get '/api/v1/backgrounds?location=indianapolis,in'
       @response = JSON.parse(response.body)
       @image_url = @response['data']['attributes']['image_url']
     end
