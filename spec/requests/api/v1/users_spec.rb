@@ -33,8 +33,23 @@ describe 'as a front-end developer' do
     end
   end
 
-  # describe 'when I send a post request to the users endpoint with invalid email, password, or password confirmation' do
-  #   it 'I receive an appropriate 400-level status code' do
-  #   end
-  # end
+  describe 'when I send a post request to the users endpoint with invalid email, password, or password confirmation' do
+    it 'I receive an appropriate 400-level status code' do
+      post '/api/v1/users', params: { 'email': "whatever@example.com",
+                                      "password": "password",
+                                      "password_confirmation": "bad_password"}
+      status_code_1 = response.status
+      response_1 = JSON.parse(response.body)
+
+      expect(status_code_1).to eq(400)
+      expect(response_1).to include(
+        'errors' => [
+          "status" => "400",
+          "source" => { "pointer" => "/api/v1/users", "parameter" => "password_confirmation" },
+          "title" =>  "Invalid Request",
+          "detail" => "Password confirmation doesn't match Password."
+        ]
+      )
+    end
+  end
 end
