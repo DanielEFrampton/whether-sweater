@@ -43,7 +43,7 @@ describe 'as a front-end developer' do
         expect(@response).to include(
           'errors' => [
             "status" => "400",
-            "source" => { ["pointer" => "/api/v1/sessions", "parameter" => "wrong_password"]},
+            "source" => { "pointer" => "/api/v1/sessions", "parameter" => "wrong_password" },
             "title" =>  "Invalid Authentication",
             "detail" => "Invalid password."
           ]
