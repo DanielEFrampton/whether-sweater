@@ -11,10 +11,6 @@ class Api::V1::SessionsController < ApplicationController
 
   private
 
-  def strong_params
-    params.permit(:email, :password)
-  end
-
   def credential_failure_status
     400
   end
