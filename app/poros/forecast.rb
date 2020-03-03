@@ -37,7 +37,7 @@ class Forecast
     @uv_index = weather_info['currently']['uvIndex']
     @visibility = weather_info['currently']['visibility']
     @today_summary = weather_info['daily']['data'][0]['summary']
-    @hourly_forecasts = weather_info['hourly']['data'].slice(1,8)
+    @hourly_forecasts = weather_info['hourly']['data']
     @daily_forecasts = weather_info['daily']['data'].slice(1,5)
   end
 
@@ -50,9 +50,9 @@ class Forecast
   end
 
   def tonight_summary
-    if unix_to_datetime(@time) < 21
+    if unix_to_datetime(@time).hour < 21
       @hourly_forecasts.find do |hour_info|
-        to_datetime(hour_info['time']).hour == 21
+        unix_to_datetime(hour_info['time']).hour == 21
       end['summary']
     else
       @summary
@@ -62,7 +62,7 @@ class Forecast
   def hourly_forecasts
     @hourly_forecasts.map do |h|
       h.slice('time','icon','temperature')
-    end
+    end.slice(1,8)
   end
 
   def daily_forecasts
