@@ -1,22 +1,10 @@
 language: ruby
+cache: bundler
 rvm:
 - 2.5.3
-cache: bundler
 services:
 - postgresql
 before_install:
 - gem install bundler
 before_script:
 - psql -c 'create database whether_sweater_test;' -U postgres
-stages:
-- test
-- name: deploy
-  if: type = push AND branch = master
-jobs:
-  include:
-  - stage: test
-  - stage: deploy
-    deploy:
-      provider: heroku
-      api_key:
-        secure: AseCKPo2qt9PtMc5iB+sk0wkIO5QmBtZE+3W4cmbIdkD04mZckCgjs5/fsFIvrmXfFXgZ4HGt1eok3DSzQvmu7Ptgzl3MmjW6XuQATvZ6aXJvTXMQCVhZD7qAx+WiBf9PEsn/xZheuiVFS6U3qF42FBlh1T4HY3dM48lFmu8V40cGauXupUmBEwanQo1fF/2SbQzFbpUiI3zqyja1FaM8U8QB3f+RdhIKNMPPD5WHGR+wUV+9Oq8yZSXbjSfL+M/gkc5ndfit3cTSfwyxymsr4W2UXxan/aJMxrDb77KE/L7EZuLbi+qz1Resp2G9nCcuSsFqKnPToz11y3i8mCzVG7ov0L/oA3CwhAsYatWUvOVDcuqAJya7o4UKov3HsGNa+SfMqENEdTor1P2FhDMurAKKg3Lrz3chpBxr39doNIie8Nw5CMWMuF70hxAhCPJP3MdxXEqf5dhMuxn4r9/0hUtVkQho7EVe6jrEjcOMeuL04qMP2IQIM+wLWEaZlyQj9cx1+eYWrqzaDSr8GaIJYCxYWikbhIuS+QRQfVSUEp/vLrO6lWUAZwRQMLEGes6e1XfcvTG2flqlq3SDklrACzplu3lIH5Np2L3nIw9lKo4bKmmUEqkIavQT9KHewjoI8uiHYliSCg105D+IQti/5vglZIdkdL+5ydlK5hG65U=
