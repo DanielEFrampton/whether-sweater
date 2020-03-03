@@ -10,7 +10,7 @@ class ErrorSerializer
       errors: [
         status: @status.to_s,
         source: { pointer: '/api/v1/sessions', parameter: @parameter },
-        title: 'Invalid Authentication',
+        title: 'Invalid Credentials',
         detail: @error
       ]
     }

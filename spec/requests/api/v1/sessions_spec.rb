@@ -43,7 +43,7 @@ describe 'as a front-end developer' do
           'errors' => [
             "status" => "400",
             "source" => { "pointer" => "/api/v1/sessions", "parameter" => "wrong_password" },
-            "title" =>  "Invalid Authentication",
+            "title" =>  "Invalid Credentials",
             "detail" => "Invalid password."
           ]
         )
