@@ -6,7 +6,7 @@ describe 'as a front-end developer' do
       post '/api/v1/users', params: { 'email': "whatever@example.com",
                                       "password": "password",
                                       "password_confirmation": "password"}
-      @status_code = response.status_code # ?? not actually sure
+      @status_code = response.status
       @response = JSON.parse(response.body)
       @new_user = User.last
     end
