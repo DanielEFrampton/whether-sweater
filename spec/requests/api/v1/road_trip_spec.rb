@@ -1,13 +1,10 @@
 require 'rails_helper'
 
-describe 'as a front-end developer' do
-  before(:each) do
-    allow(Time).to receive(:now).and_return(Time.parse('2020-03-03 13:31:31 -0700'))
-  end
-
+describe 'as a front-end developer', :vcr do
   describe 'when I send a post request to the road_trip endpoint' do
     describe 'with valid API key' do
       before(:each) do
+        allow(Time).to receive(:now).and_return(Time.parse('2020-03-03 13:31:31 -0700'))
         post '/api/v1/road_trip', params: {"origin": "Denver,CO",
                                            "destination": "Pueblo,CO",
                                            "api_key": "jgn983hy48thw9begh98h4539h4"}
@@ -23,13 +20,13 @@ describe 'as a front-end developer' do
         expect(@response).to include(
           'data' => {
             'id' => nil,
-            'type' => 'road_trip',
+            'type' => 'roadTrip',
             'attributes' => {
               'origin' => 'Denver, CO',
               'destination' => 'Pueblo, CO',
               'travelTime' => '1 hour 48 mins',
               'forecast' => {
-                'temperature' => 61.56,
+                'temperature' => 61.4,
                 'summary' => 'Clear'
               }
             }
@@ -40,6 +37,7 @@ describe 'as a front-end developer' do
 
     describe 'with an invalid or no API key' do
       it 'I receive a JSON:API error object with descriptive error information' do
+        allow(Time).to receive(:now).and_return(Time.parse('2020-03-03 13:31:31 -0700'))
         post '/api/v1/road_trip', params: {"origin": "Denver,CO",
                                            "destination": "Pueblo,CO",
                                            "api_key": "aaaabbbbccccddddeeeeffff"}
