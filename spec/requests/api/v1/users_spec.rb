@@ -22,13 +22,14 @@ describe 'as a front-end developer' do
     it 'and I receive a JSON:API response containing a unique api_key for that user' do
       expect(@response).to include(
         'data' => {
-          'id' => @new_user.id,
-          'type' => 'users',
+          'id' => @new_user.id.to_s,
+          'type' => 'user',
           'attributes' => {
-            'api_key' => satisfy('have a 24-character key') { |key| key.length == 24}
+            'api_key' => @new_user.api_key
           }
         }
       )
+      expect(@new_user.api_key).to match(/[A-Za-z0-9]{24}/)
     end
   end
 
