@@ -5,10 +5,18 @@ describe Forecast do
     describe 'tonight_summary' do
       it 'should return weather summary of 9pm hour if before 9pm, or current hour if after 9pm but before midnight' do
         location_info = JSON.parse(file_fixture('denver_geocode.json').read)
-        weather_info = JSON.parse(file_fixture('denver_forecast.json').read)
+        weather_info_1 = JSON.parse(file_fixture('denver_forecast_3.json').read)
 
-        forecast = Forecast.new(weather_info, location_info)
-        expect(forecast.tonight_summary).to eq('Overcast')
+        forecast_1 = Forecast.new(weather_info_1, location_info) # 10 o'clock current time
+        expect(forecast_1.tonight_summary).to eq("The currently summary")
+
+        weather_info_2 = JSON.parse(file_fixture('denver_forecast_2.json').read)
+        forecast_2 = Forecast.new(weather_info_2, location_info) # 3 o'clock current time
+        expect(forecast_2.tonight_summary).to eq("The 9 o'clock summary")
+
+        weather_info_3 = JSON.parse(file_fixture('denver_forecast_4.json').read)
+        forecast_3 = Forecast.new(weather_info_3, location_info) # 12:01am current time
+        expect(forecast_3.tonight_summary).to eq("The 9pm summary")
       end
     end
 
