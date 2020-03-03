@@ -5,6 +5,8 @@ class DarkSkyService
 
   def simple_future_forecast(lat, long, time)
     data = get_forecast("#{lat},#{long}#{',' + time.to_s}")
+    FutureForecastResults.new(temperature: data['currently']['temperature'],
+                              summary: data['currently']['summary'])
   end
 
   private

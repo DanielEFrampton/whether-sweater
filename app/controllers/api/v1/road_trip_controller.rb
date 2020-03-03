@@ -6,11 +6,8 @@ class Api::V1::RoadTripController < ApplicationController
     elsif User.authenticate_token(params[:api_key])
       end_location = GoogleApiService.new.geocode(params[:destination])
       distance_info = GoogleApiService.new.distance(params[:origin], params[:destination])
-      forecast_info = DarkSkyService.new.simple_future_forecast(end_location[:lat], end_location[:long], distance_info[:arrival_timestamp])
-      summary = forecast_info['currently']['summary']
-      temp = forecast_info['currently']['temperature']
-      forecast = FutureForecast.new(summary, temp)
-      road_trip = RoadTrip.new(forecast: forecast,
+      forecast_results = DarkSkyService.new.simple_future_forecast(end_location[:lat], end_location[:long], distance_info[:arrival_timestamp])
+      road_trip = RoadTrip.new(forecast: forecast_results,
                                travel_time: distance_info[:travel_time],
                                origin: format_location(params[:origin]),
                                destination: format_location(params[:destination]))
