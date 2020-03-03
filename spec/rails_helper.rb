@@ -26,6 +26,8 @@ VCR.configure do |config|
   config.filter_sensitive_data("<DARK_SKY_SECRET>") { ENV['DARK_SKY_SECRET'] }
   config.filter_sensitive_data("<GOOGLE_API_KEY>") { ENV['GOOGLE_API_KEY'] }
   config.filter_sensitive_data("<YELP_API_KEY>") { ENV['YELP_API_KEY'] }
+  config.filter_sensitive_data("<UNSPLASH_ACCESS_KEY>") { ENV['UNSPLASH_ACCESS_KEY'] }
+  config.filter_sensitive_data("<UNSPLASH_SECRET_KEY>") { ENV['UNSPLASH_SECRET_KEY'] }
 end
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
