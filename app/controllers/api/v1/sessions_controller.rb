@@ -21,7 +21,7 @@ class Api::V1::SessionsController < ApplicationController
 
   private
 
-    def credential_failure_status
-      400
-    end
+  def credential_failure_status
+    400
+  end
 end

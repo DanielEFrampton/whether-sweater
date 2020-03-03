@@ -14,17 +14,17 @@ class Api::V1::UsersController < ApplicationController
 
   private
 
-    def strong_params
-      params.permit(:email, :password, :password_confirmation)
-    end
+  def strong_params
+    params.permit(:email, :password, :password_confirmation)
+  end
 
-    def registration_failure_status
-      400
-    end
+  def registration_failure_status
+    400
+  end
 
-    def error_parameters(object)
-      object.errors.map do |attribute, _error|
-        attribute
-      end.join(', ')
-    end
+  def error_parameters(object)
+    object.errors.map do |attribute, _error|
+      attribute
+    end.join(', ')
+  end
 end

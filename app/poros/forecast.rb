@@ -74,7 +74,7 @@ class Forecast
 
   private
 
-    def unix_to_datetime(unix_timestamp)
-      Time.at(unix_timestamp).utc.to_datetime.new_offset("#{@timezone_offset}:00")
-    end
+  def unix_to_datetime(unix_timestamp)
+    Time.at(unix_timestamp).utc.to_datetime.new_offset("#{@timezone_offset}:00")
+  end
 end
