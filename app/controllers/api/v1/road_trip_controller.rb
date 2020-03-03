@@ -20,10 +20,6 @@ class Api::V1::RoadTripController < ApplicationController
 
   private
 
-  def strong_params
-    params.permit(:origin, :destination, :api_key)
-  end
-
   def format_location(string)
     string.gsub(',',', ')
   end
