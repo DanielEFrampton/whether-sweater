@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 describe 'as a front-end developer' do
+  before(:each) do
+    allow(Time).to receive(:now).and_return(Time.parse('2020-03-03 13:31:31 -0700'))
+  end
+
   describe 'when I send a post request to the road_trip endpoint' do
     describe 'with valid API key' do
       before(:each) do
@@ -25,8 +29,8 @@ describe 'as a front-end developer' do
               'destination' => 'Pueblo, CO',
               'travelTime' => '1 hour 48 mins',
               'forecast' => {
-                'temperature' => 74, # replace with actual after stubbing Time
-                'summary' => 'Overcast' # replace with actual after stubbing Time
+                'temperature' => 61.56,
+                'summary' => 'Clear'
               }
             }
           }
