@@ -23,7 +23,7 @@ RSpec.describe DarkSkyService, :vcr do
         data = DarkSkyService.new.simple_future_forecast('39.7392358','-104.990251',1583179830)
         expect(data).to be_instance_of(FutureForecastResults)
         expect(data.summary).to eq('Clear')
-        expect(data.temperature).to eq(43.84)
+        expect(data.temperature).to eq(47.74)
       end
     end
   end
