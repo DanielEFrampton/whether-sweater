@@ -1,17 +1,19 @@
 class ErrorSerializer
-  def initialize(error, status, param)
-    @error = error
+  def initialize(detail:, status:, title:, pointer:, parameter:)
+    @detail = detail
     @status = status
-    @parameter = param
+    @title = title
+    @parameter = parameter
+    @pointer = pointer
   end
 
   def errors
     {
       errors: [
         status: @status.to_s,
-        source: { pointer: '/api/v1/sessions', parameter: @parameter },
-        title: 'Invalid Credentials',
-        detail: @error
+        source: { pointer: @pointer, parameter: @parameter },
+        title: @title,
+        detail: @detail
       ]
     }
   end
