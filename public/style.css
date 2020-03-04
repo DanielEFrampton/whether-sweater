@@ -1,0 +1,60 @@
+html {
+  height: 100%;
+}
+
+body {
+  font-family: 'Work Sans', sans-serif;
+  background-color: lightblue;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+header {
+  background-color: white;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header #title-logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+header img {
+  margin-right: 10px;
+}
+
+main {
+  padding: 20px;
+  flex-grow: 1;
+}
+
+a:visited, a {
+  color: black;
+  font-family: 'Fredoka One', cursive;
+  text-decoration: none;
+}
+
+nav a {
+  margin-right: 0px;
+}
+
+nav a:first-child {
+  margin-right: 10px;
+}
+
+h1 {
+  font-family: 'Fredoka One', cursive;
+}
+
+footer {
+  padding: 20px;
+  background-color: gainsboro;
+}
