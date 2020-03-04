@@ -10,4 +10,6 @@ Rails.application.routes.draw do
       post 'road_trip', to: 'road_trip#create'
     end
   end
+
+  get '*path', to: 'welcome#index'
 end
