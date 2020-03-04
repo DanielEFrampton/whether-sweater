@@ -18,7 +18,410 @@
       </nav>
     </header>
     <main>
-      Welcome to the Weather Sweater API, an API-only Rails back-end application designed to serve data to a fictional "Sweater Weather" front-end application, as a student project for <a href="http://turing.io">Turing School of Software & Design</a>.
+      <p class="has-line-data" data-line-start="8" data-line-end="9">This is the Weather Sweater API, an API-only Rails back-end application designed to serve data to a fictional “Sweater Weather” front-end application. It was developed by <a href="https://github.com/DanielEFrampton">Daniel Frampton</a> as a project for <a href="http://turing.io">Turing School of Software & Design</a> in order to practice 3rd party API consumption, combining outputs, and exposing data and authentication functionality via an API.</p>
+      <h2 class="code-line" data-line-start=6 data-line-end=7 ><a id="Table_of_Contents_6"></a>Table of Contents</h2>
+      <ul>
+      <li class="has-line-data" data-line-start="8" data-line-end="9"><a href="#technologies-architecture">Technologies &amp; Architecture</a></li>
+      <li class="has-line-data" data-line-start="9" data-line-end="10"><a href="#test-coverage-metrics">Test Coverage &amp; Metrics</a></li>
+      <li class="has-line-data" data-line-start="10" data-line-end="18"><a href="#endpoints">Endpoints</a>
+      <ul>
+      <li class="has-line-data" data-line-start="11" data-line-end="12"><a href="#forecast">Forecast</a></li>
+      <li class="has-line-data" data-line-start="12" data-line-end="13"><a href="#backgrounds">Backgrounds</a></li>
+      <li class="has-line-data" data-line-start="13" data-line-end="14"><a href="#users">Users</a></li>
+      <li class="has-line-data" data-line-start="14" data-line-end="15"><a href="#sessions">Sessions</a></li>
+      <li class="has-line-data" data-line-start="15" data-line-end="16"><a href="#road-trip">Road Trip</a></li>
+      <li class="has-line-data" data-line-start="16" data-line-end="18"><a href="#munchies">Munchies</a></li>
+      </ul>
+      </li>
+      </ul>
+
+      <h2 class="code-line" data-line-start=2 data-line-end=3 ><a id="technologies-architecture"></a>Technologies &amp; Architecture</h2>
+      <ul>
+      <li class="has-line-data" data-line-start="4" data-line-end="5">Framework: Ruby on Rails</li>
+      <li class="has-line-data" data-line-start="5" data-line-end="6">Testing: RSpec</li>
+      <li class="has-line-data" data-line-start="6" data-line-end="7">Deployment: Heroku</li>
+      <li class="has-line-data" data-line-start="7" data-line-end="8">CI/CD: TravisCI</li>
+      <li class="has-line-data" data-line-start="8" data-line-end="9">JSON Serializer: FastJsonAPI</li>
+      <li class="has-line-data" data-line-start="9" data-line-end="15">3rd Party APIs:
+      <ul>
+      <li class="has-line-data" data-line-start="10" data-line-end="11">Google Direction Matrix API</li>
+      <li class="has-line-data" data-line-start="11" data-line-end="12">Google Geocoding API</li>
+      <li class="has-line-data" data-line-start="12" data-line-end="13">Yelp API</li>
+      <li class="has-line-data" data-line-start="13" data-line-end="14">Unsplash API</li>
+      <li class="has-line-data" data-line-start="14" data-line-end="15">DarkSky API</li>
+      </ul>
+      </li>
+      <li class="has-line-data" data-line-start="15" data-line-end="16">Response Caching: VCR &amp; Webmock</li>
+      <li class="has-line-data" data-line-start="16" data-line-end="17">Linting: Rubocop</li>
+      <li class="has-line-data" data-line-start="17" data-line-end="19">Test Coverage: SimpleCov</li>
+      </ul>
+      <h2 class="code-line" data-line-start=19 data-line-end=20 ><a id="test-coverage-metrics"></a>Test Coverage &amp; Metrics</h2>
+      <p class="has-line-data" data-line-start="21" data-line-end="22">At time of project submission, Whether Sweater has 100% test coverage, zero Rubocop violations, and all tests passing.</p>
+      <h2 class="code-line" data-line-start=23 data-line-end=24 ><a id="endpoints"></a>Endpoints</h2>
+      <p class="has-line-data" data-line-start="25" data-line-end="26">All endpoints are built on this API URL:</p>
+      <pre><code class="has-line-data" data-line-start="27" data-line-end="29">http://whether-sweater-df.herokuapp.com/api/v1
+      </code></pre>
+      <p class="has-line-data" data-line-start="29" data-line-end="30">Note the appropriate HTTP verb for each endpoint.</p>
+      <h3 class="code-line" data-line-start=31 data-line-end=32 ><a id="forecast"></a>Forecast Endpoint</h3>
+      <p class="has-line-data" data-line-start="33" data-line-end="34">Retrieve detailed weather information for a given city, including:</p>
+      <ul>
+      <li class="has-line-data" data-line-start="34" data-line-end="35">Current conditions</li>
+      <li class="has-line-data" data-line-start="35" data-line-end="36">Location details</li>
+      <li class="has-line-data" data-line-start="36" data-line-end="37">Tonight’s weather (at 9pm, or currently if between 9 and midnight)</li>
+      <li class="has-line-data" data-line-start="37" data-line-end="38">Hourly forecasts for next 8 hours</li>
+      <li class="has-line-data" data-line-start="38" data-line-end="40">Daily forecasts for next 5 days</li>
+      </ul>
+      <p class="has-line-data" data-line-start="40" data-line-end="41">Endpoint:</p>
+      <pre><code class="has-line-data" data-line-start="42" data-line-end="44">/forecast
+      </code></pre>
+      <p class="has-line-data" data-line-start="45" data-line-end="46">Query Parameter(s):</p>
+      <ul>
+      <li class="has-line-data" data-line-start="46" data-line-end="48"><code>location</code>, which should be a string containing a city and state, comma-separated (e.g., “denver,co”).</li>
+      </ul>
+      <p class="has-line-data" data-line-start="48" data-line-end="49">HTTP Request Example:</p>
+      <pre><code class="has-line-data" data-line-start="50" data-line-end="52">GET http://whether-sweater-df.herokuapp.com/api/v1/forecast?location=indianapolis,in
+      </code></pre>
+      <p class="has-line-data" data-line-start="53" data-line-end="54">Response example:</p>
+      <pre><code class="has-line-data" data-line-start="55" data-line-end="181" class="language-json">{
+          "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"forecast"</span></span>,
+              "<span class="hljs-attribute">attributes</span>": <span class="hljs-value">{
+                  "<span class="hljs-attribute">location</span>": <span class="hljs-value">{
+                      "<span class="hljs-attribute">city</span>": <span class="hljs-value"><span class="hljs-string">"Indianapolis"</span></span>,
+                      "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"IN"</span></span>,
+                      "<span class="hljs-attribute">country</span>": <span class="hljs-value"><span class="hljs-string">"United States"</span></span>,
+                      "<span class="hljs-attribute">city_state</span>": <span class="hljs-value"><span class="hljs-string">"Indianapolis, IN"</span></span>,
+                      "<span class="hljs-attribute">lat</span>": <span class="hljs-value"><span class="hljs-number">39.768403</span></span>,
+                      "<span class="hljs-attribute">long</span>": <span class="hljs-value">-<span class="hljs-number">86.158068</span>
+                  </span>}</span>,
+                  "<span class="hljs-attribute">currentForecast</span>": <span class="hljs-value">{
+                      "<span class="hljs-attribute">feels_like</span>": <span class="hljs-value"><span class="hljs-number">29.88</span></span>,
+                      "<span class="hljs-attribute">humidity</span>": <span class="hljs-value"><span class="hljs-number">0.78</span></span>,
+                      "<span class="hljs-attribute">icon</span>": <span class="hljs-value"><span class="hljs-string">"clear-night"</span></span>,
+                      "<span class="hljs-attribute">summary</span>": <span class="hljs-value"><span class="hljs-string">"Clear"</span></span>,
+                      "<span class="hljs-attribute">temperature</span>": <span class="hljs-value"><span class="hljs-number">35.84</span></span>,
+                      "<span class="hljs-attribute">time</span>": <span class="hljs-value"><span class="hljs-number">1583312586</span></span>,
+                      "<span class="hljs-attribute">uv_index</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+                      "<span class="hljs-attribute">visibility</span>": <span class="hljs-value"><span class="hljs-number">10</span></span>,
+                      "<span class="hljs-attribute">day_temperature_high</span>": <span class="hljs-value"><span class="hljs-number">50.62</span></span>,
+                      "<span class="hljs-attribute">day_temperature_low</span>": <span class="hljs-value"><span class="hljs-number">30.02</span></span>,
+                      "<span class="hljs-attribute">today_summary</span>": <span class="hljs-value"><span class="hljs-string">"Partly cloudy throughout the day."</span></span>,
+                      "<span class="hljs-attribute">timezone_offset</span>": <span class="hljs-value">-<span class="hljs-number">5</span></span>,
+                      "<span class="hljs-attribute">timezone</span>": <span class="hljs-value"><span class="hljs-string">"America/Indiana/Indianapolis"</span></span>,
+                      "<span class="hljs-attribute">uv_exposure_category</span>": <span class="hljs-value"><span class="hljs-string">"low"</span>
+                  </span>}</span>,
+                  "<span class="hljs-attribute">tonightSummary</span>": <span class="hljs-value"><span class="hljs-string">"Clear"</span></span>,
+                  "<span class="hljs-attribute">hourlyForecasts</span>": <span class="hljs-value">[
+                      {
+                          "<span class="hljs-attribute">time</span>": <span class="hljs-value"><span class="hljs-number">1583316000</span></span>,
+                          "<span class="hljs-attribute">icon</span>": <span class="hljs-value"><span class="hljs-string">"rain"</span></span>,
+                          "<span class="hljs-attribute">temperature</span>": <span class="hljs-value"><span class="hljs-number">35.42</span></span>,
+                          "<span class="hljs-attribute">summary</span>": <span class="hljs-value"><span class="hljs-string">"Possible Drizzle"</span>
+                      </span>},
+                      {
+                          "<span class="hljs-attribute">time</span>": <span class="hljs-value"><span class="hljs-number">1583319600</span></span>,
+                          "<span class="hljs-attribute">icon</span>": <span class="hljs-value"><span class="hljs-string">"clear-night"</span></span>,
+                          "<span class="hljs-attribute">temperature</span>": <span class="hljs-value"><span class="hljs-number">36.19</span></span>,
+                          "<span class="hljs-attribute">summary</span>": <span class="hljs-value"><span class="hljs-string">"Clear"</span>
+                      </span>},
+                      {
+                          "<span class="hljs-attribute">time</span>": <span class="hljs-value"><span class="hljs-number">1583323200</span></span>,
+                          "<span class="hljs-attribute">icon</span>": <span class="hljs-value"><span class="hljs-string">"clear-night"</span></span>,
+                          "<span class="hljs-attribute">temperature</span>": <span class="hljs-value"><span class="hljs-number">37.22</span></span>,
+                          "<span class="hljs-attribute">summary</span>": <span class="hljs-value"><span class="hljs-string">"Clear"</span>
+                      </span>},
+                      {
+                          "<span class="hljs-attribute">time</span>": <span class="hljs-value"><span class="hljs-number">1583326800</span></span>,
+                          "<span class="hljs-attribute">icon</span>": <span class="hljs-value"><span class="hljs-string">"partly-cloudy-day"</span></span>,
+                          "<span class="hljs-attribute">temperature</span>": <span class="hljs-value"><span class="hljs-number">39.01</span></span>,
+                          "<span class="hljs-attribute">summary</span>": <span class="hljs-value"><span class="hljs-string">"Partly Cloudy"</span>
+                      </span>},
+                      {
+                          "<span class="hljs-attribute">time</span>": <span class="hljs-value"><span class="hljs-number">1583330400</span></span>,
+                          "<span class="hljs-attribute">icon</span>": <span class="hljs-value"><span class="hljs-string">"partly-cloudy-day"</span></span>,
+                          "<span class="hljs-attribute">temperature</span>": <span class="hljs-value"><span class="hljs-number">42.91</span></span>,
+                          "<span class="hljs-attribute">summary</span>": <span class="hljs-value"><span class="hljs-string">"Mostly Cloudy"</span>
+                      </span>},
+                      {
+                          "<span class="hljs-attribute">time</span>": <span class="hljs-value"><span class="hljs-number">1583334000</span></span>,
+                          "<span class="hljs-attribute">icon</span>": <span class="hljs-value"><span class="hljs-string">"partly-cloudy-day"</span></span>,
+                          "<span class="hljs-attribute">temperature</span>": <span class="hljs-value"><span class="hljs-number">46.24</span></span>,
+                          "<span class="hljs-attribute">summary</span>": <span class="hljs-value"><span class="hljs-string">"Mostly Cloudy"</span>
+                      </span>},
+                      {
+                          "<span class="hljs-attribute">time</span>": <span class="hljs-value"><span class="hljs-number">1583337600</span></span>,
+                          "<span class="hljs-attribute">icon</span>": <span class="hljs-value"><span class="hljs-string">"partly-cloudy-day"</span></span>,
+                          "<span class="hljs-attribute">temperature</span>": <span class="hljs-value"><span class="hljs-number">48.21</span></span>,
+                          "<span class="hljs-attribute">summary</span>": <span class="hljs-value"><span class="hljs-string">"Mostly Cloudy"</span>
+                      </span>},
+                      {
+                          "<span class="hljs-attribute">time</span>": <span class="hljs-value"><span class="hljs-number">1583341200</span></span>,
+                          "<span class="hljs-attribute">icon</span>": <span class="hljs-value"><span class="hljs-string">"partly-cloudy-day"</span></span>,
+                          "<span class="hljs-attribute">temperature</span>": <span class="hljs-value"><span class="hljs-number">49.13</span></span>,
+                          "<span class="hljs-attribute">summary</span>": <span class="hljs-value"><span class="hljs-string">"Partly Cloudy"</span>
+                      </span>}
+                  ]</span>,
+                  "<span class="hljs-attribute">dailyForecasts</span>": <span class="hljs-value">[
+                      {
+                          "<span class="hljs-attribute">time</span>": <span class="hljs-value"><span class="hljs-number">1583384400</span></span>,
+                          "<span class="hljs-attribute">icon</span>": <span class="hljs-value"><span class="hljs-string">"partly-cloudy-day"</span></span>,
+                          "<span class="hljs-attribute">temperature_high</span>": <span class="hljs-value"><span class="hljs-number">56.95</span></span>,
+                          "<span class="hljs-attribute">temperature_low</span>": <span class="hljs-value"><span class="hljs-number">32.37</span></span>,
+                          "<span class="hljs-attribute">humidity</span>": <span class="hljs-value"><span class="hljs-number">0.61</span></span>,
+                          "<span class="hljs-attribute">weekday</span>": <span class="hljs-value"><span class="hljs-string">"Thursday"</span>
+                      </span>},
+                      {
+                          "<span class="hljs-attribute">time</span>": <span class="hljs-value"><span class="hljs-number">1583470800</span></span>,
+                          "<span class="hljs-attribute">icon</span>": <span class="hljs-value"><span class="hljs-string">"partly-cloudy-day"</span></span>,
+                          "<span class="hljs-attribute">temperature_high</span>": <span class="hljs-value"><span class="hljs-number">42.02</span></span>,
+                          "<span class="hljs-attribute">temperature_low</span>": <span class="hljs-value"><span class="hljs-number">25.71</span></span>,
+                          "<span class="hljs-attribute">humidity</span>": <span class="hljs-value"><span class="hljs-number">0.68</span></span>,
+                          "<span class="hljs-attribute">weekday</span>": <span class="hljs-value"><span class="hljs-string">"Friday"</span>
+                      </span>},
+                      {
+                          "<span class="hljs-attribute">time</span>": <span class="hljs-value"><span class="hljs-number">1583557200</span></span>,
+                          "<span class="hljs-attribute">icon</span>": <span class="hljs-value"><span class="hljs-string">"clear-day"</span></span>,
+                          "<span class="hljs-attribute">temperature_high</span>": <span class="hljs-value"><span class="hljs-number">53.87</span></span>,
+                          "<span class="hljs-attribute">temperature_low</span>": <span class="hljs-value"><span class="hljs-number">35.58</span></span>,
+                          "<span class="hljs-attribute">humidity</span>": <span class="hljs-value"><span class="hljs-number">0.61</span></span>,
+                          "<span class="hljs-attribute">weekday</span>": <span class="hljs-value"><span class="hljs-string">"Saturday"</span>
+                      </span>},
+                      {
+                          "<span class="hljs-attribute">time</span>": <span class="hljs-value"><span class="hljs-number">1583643600</span></span>,
+                          "<span class="hljs-attribute">icon</span>": <span class="hljs-value"><span class="hljs-string">"partly-cloudy-day"</span></span>,
+                          "<span class="hljs-attribute">temperature_high</span>": <span class="hljs-value"><span class="hljs-number">62.26</span></span>,
+                          "<span class="hljs-attribute">temperature_low</span>": <span class="hljs-value"><span class="hljs-number">47.59</span></span>,
+                          "<span class="hljs-attribute">humidity</span>": <span class="hljs-value"><span class="hljs-number">0.55</span></span>,
+                          "<span class="hljs-attribute">weekday</span>": <span class="hljs-value"><span class="hljs-string">"Sunday"</span>
+                      </span>},
+                      {
+                          "<span class="hljs-attribute">time</span>": <span class="hljs-value"><span class="hljs-number">1583726400</span></span>,
+                          "<span class="hljs-attribute">icon</span>": <span class="hljs-value"><span class="hljs-string">"rain"</span></span>,
+                          "<span class="hljs-attribute">temperature_high</span>": <span class="hljs-value"><span class="hljs-number">60.46</span></span>,
+                          "<span class="hljs-attribute">temperature_low</span>": <span class="hljs-value"><span class="hljs-number">43.27</span></span>,
+                          "<span class="hljs-attribute">humidity</span>": <span class="hljs-value"><span class="hljs-number">0.76</span></span>,
+                          "<span class="hljs-attribute">weekday</span>": <span class="hljs-value"><span class="hljs-string">"Monday"</span>
+                      </span>}
+                  ]
+              </span>}
+          </span>}
+      </span>}
+      </code></pre>
+      <h3 class="code-line" data-line-start=182 data-line-end=183 ><a id="backgrounds"></a>Backgrounds</h3>
+      <p class="has-line-data" data-line-start="184" data-line-end="185">Retrieve a background image URL from Unsplash for a given city, which can be resized to fit one’s needs.</p>
+      <p class="has-line-data" data-line-start="186" data-line-end="187">Endpoint:</p>
+      <pre><code class="has-line-data" data-line-start="188" data-line-end="190">/backgrounds
+      </code></pre>
+      <p class="has-line-data" data-line-start="191" data-line-end="192">Query Parameter(s):</p>
+      <ul>
+      <li class="has-line-data" data-line-start="192" data-line-end="194"><code>location</code>, which should be a string containing a city and state, comma-separated (e.g., “denver,co”).</li>
+      </ul>
+      <p class="has-line-data" data-line-start="194" data-line-end="195">HTTP Request Example:</p>
+      <pre><code class="has-line-data" data-line-start="196" data-line-end="198">GET http://whether-sweater-df.herokuapp.com/api/v1/backgrounds?location=indianapolis,in
+      </code></pre>
+      <p class="has-line-data" data-line-start="199" data-line-end="200">Response example:</p>
+      <pre><code class="has-line-data" data-line-start="201" data-line-end="211" class="language-json">{
+          "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"background"</span></span>,
+              "<span class="hljs-attribute">attributes</span>": <span class="hljs-value">{
+                  "<span class="hljs-attribute">image_url</span>": <span class="hljs-value"><span class="hljs-string">"https://images.unsplash.com/photo-1570039486851-9caa462a2cd3?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjExODU0MH0"</span>
+              </span>}
+          </span>}
+      </span>}
+      </code></pre>
+      <h3 class="code-line" data-line-start=212 data-line-end=213 ><a id="users"></a>Users</h3>
+      <p class="has-line-data" data-line-start="214" data-line-end="215">Submit a user’s email, password, and password confirmation to create that user in the database and receive a unique API key for the user.</p>
+      <p class="has-line-data" data-line-start="216" data-line-end="217">POST Request Body Parameter(s):</p>
+      <ul>
+      <li class="has-line-data" data-line-start="217" data-line-end="218"><code>email</code>, which is a string value and must be unique in the database.</li>
+      <li class="has-line-data" data-line-start="218" data-line-end="219"><code>password</code>, which is a string value.</li>
+      <li class="has-line-data" data-line-start="219" data-line-end="221"><code>password_confirmation</code>, which is a string value and must be present and match the <code>password</code>.</li>
+      </ul>
+      <p class="has-line-data" data-line-start="221" data-line-end="222">Endpoint:</p>
+      <pre><code class="has-line-data" data-line-start="223" data-line-end="225">/users
+      </code></pre>
+      <p class="has-line-data" data-line-start="226" data-line-end="227">HTTP Request example:</p>
+      <pre><code class="has-line-data" data-line-start="228" data-line-end="230">POST http://whether-sweater-df.herokuapp.com/api/v1/users
+      </code></pre>
+      <p class="has-line-data" data-line-start="230" data-line-end="231">Headers example:</p>
+      <pre><code class="has-line-data" data-line-start="232" data-line-end="235">Content-Type: application/json
+      Accept: application/json
+      </code></pre>
+      <p class="has-line-data" data-line-start="235" data-line-end="236">Body example:</p>
+      <pre><code class="has-line-data" data-line-start="237" data-line-end="243" class="language-json">{
+        "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"daniel@whethersweater.org"</span></span>,
+        "<span class="hljs-attribute">password</span>": <span class="hljs-value"><span class="hljs-string">"123badpassword"</span></span>,
+        "<span class="hljs-attribute">password_confirmation</span>": <span class="hljs-value"><span class="hljs-string">"123badpassword"</span>
+      </span>}
+      </code></pre>
+      <p class="has-line-data" data-line-start="244" data-line-end="245">Response example:</p>
+      <pre><code class="has-line-data" data-line-start="246" data-line-end="256" class="language-json">{
+          "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"1"</span></span>,
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"user"</span></span>,
+              "<span class="hljs-attribute">attributes</span>": <span class="hljs-value">{
+                  "<span class="hljs-attribute">api_key</span>": <span class="hljs-value"><span class="hljs-string">"2spUUHk5he9QyaejKsPKcYV6"</span>
+              </span>}
+          </span>}
+      </span>}
+      </code></pre>
+      <p class="has-line-data" data-line-start="257" data-line-end="258">If there is a problem with the parameters provided, a JSON:API error object will be returned containing details about which parameter caused the error.</p>
+      <p class="has-line-data" data-line-start="259" data-line-end="260">Error example:</p>
+      <pre><code class="has-line-data" data-line-start="261" data-line-end="275" class="language-json">{
+          "<span class="hljs-attribute">errors</span>": <span class="hljs-value">[
+              {
+                  "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"400"</span></span>,
+                  "<span class="hljs-attribute">source</span>": <span class="hljs-value">{
+                      "<span class="hljs-attribute">pointer</span>": <span class="hljs-value"><span class="hljs-string">"/api/v1/users"</span></span>,
+                      "<span class="hljs-attribute">parameter</span>": <span class="hljs-value"><span class="hljs-string">"email, password_confirmation"</span>
+                  </span>}</span>,
+                  "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Invalid Request"</span></span>,
+                  "<span class="hljs-attribute">detail</span>": <span class="hljs-value"><span class="hljs-string">"Email has already been taken, Password confirmation doesn't match Password."</span>
+              </span>}
+          ]
+      </span>}
+      </code></pre>
+      <h3 class="code-line" data-line-start=276 data-line-end=277 ><a id="sessions"></a>Sessions</h3>
+      <p class="has-line-data" data-line-start="278" data-line-end="279">Submit an existing user’s email and password and receive their unique API key generated by the previous endpoint.</p>
+      <p class="has-line-data" data-line-start="280" data-line-end="281">Endpoint:</p>
+      <pre><code class="has-line-data" data-line-start="282" data-line-end="284">/sessions
+      </code></pre>
+      <p class="has-line-data" data-line-start="285" data-line-end="286">POST Request Body Parameter(s):</p>
+      <ul>
+      <li class="has-line-data" data-line-start="286" data-line-end="287"><code>email</code>, which is a string value and must be unique in the database.</li>
+      <li class="has-line-data" data-line-start="287" data-line-end="288"><code>password</code>, which is a string value.</li>
+      </ul>
+      <p class="has-line-data" data-line-start="290" data-line-end="291">HTTP Request example:</p>
+      <pre><code class="has-line-data" data-line-start="292" data-line-end="294">POST http://whether-sweater-df.herokuapp.com/api/v1/sessions
+      </code></pre>
+      <p class="has-line-data" data-line-start="294" data-line-end="295">Headers example:</p>
+      <pre><code class="has-line-data" data-line-start="296" data-line-end="299">Content-Type: application/json
+      Accept: application/json
+      </code></pre>
+      <p class="has-line-data" data-line-start="299" data-line-end="300">Body example:</p>
+      <pre><code class="has-line-data" data-line-start="301" data-line-end="306" class="language-json">{
+        "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"daniel@whethersweater.org"</span></span>,
+        "<span class="hljs-attribute">password</span>": <span class="hljs-value"><span class="hljs-string">"123badpassword"</span></span>,
+      }
+      </code></pre>
+      <p class="has-line-data" data-line-start="307" data-line-end="308">Response example:</p>
+      <pre><code class="has-line-data" data-line-start="309" data-line-end="319" class="language-json">{
+          "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"1"</span></span>,
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"user"</span></span>,
+              "<span class="hljs-attribute">attributes</span>": <span class="hljs-value">{
+                  "<span class="hljs-attribute">api_key</span>": <span class="hljs-value"><span class="hljs-string">"2spUUHk5he9QyaejKsPKcYV6"</span>
+              </span>}
+          </span>}
+      </span>}
+      </code></pre>
+      <p class="has-line-data" data-line-start="320" data-line-end="321">If there is a problem with the parameters provided, a JSON:API error object will be returned containing details about which parameter caused the error.</p>
+      <p class="has-line-data" data-line-start="322" data-line-end="323">Error example:</p>
+      <pre><code class="has-line-data" data-line-start="324" data-line-end="338" class="language-json">{
+          "<span class="hljs-attribute">errors</span>": <span class="hljs-value">[
+              {
+                  "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"400"</span></span>,
+                  "<span class="hljs-attribute">source</span>": <span class="hljs-value">{
+                      "<span class="hljs-attribute">pointer</span>": <span class="hljs-value"><span class="hljs-string">"/api/v1/sessions"</span></span>,
+                      "<span class="hljs-attribute">parameter</span>": <span class="hljs-value"><span class="hljs-string">"email"</span>
+                  </span>}</span>,
+                  "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Invalid Credentials"</span></span>,
+                  "<span class="hljs-attribute">detail</span>": <span class="hljs-value"><span class="hljs-string">"Invalid email."</span>
+              </span>}
+          ]
+      </span>}
+      </code></pre>
+      <h3 class="code-line" data-line-start=339 data-line-end=340 ><a id="road-trip"></a>Road Trip</h3>
+      <p class="has-line-data" data-line-start="341" data-line-end="342">Submit an origin and a destination along with a user’s API key and receive information on travel time and the temperature and weather upon arrival.</p>
+      <p class="has-line-data" data-line-start="343" data-line-end="344">Endpoint:</p>
+      <pre><code class="has-line-data" data-line-start="345" data-line-end="347">/road_trip
+      </code></pre>
+      <p class="has-line-data" data-line-start="348" data-line-end="349">POST Request Body Parameter(s):</p>
+      <ul>
+      <li class="has-line-data" data-line-start="349" data-line-end="350"><code>origin</code>, which should be a string containing a city and state, comma-separated (e.g., “denver,co”).</li>
+      <li class="has-line-data" data-line-start="350" data-line-end="351"><code>destination</code>, which should be another string containing a city and state, comma-separated (e.g., “pueblo,co”).</li>
+      <li class="has-line-data" data-line-start="351" data-line-end="353"><code>api_key</code>, which should be a valid 24-character API key acquired from either the <code>/users</code> or <code>/sessions</code> endpoints above, as a string.</li>
+      </ul>
+      <p class="has-line-data" data-line-start="353" data-line-end="354">HTTP Request example:</p>
+      <pre><code class="has-line-data" data-line-start="355" data-line-end="357">POST http://whether-sweater-df.herokuapp.com/api/v1/road_trip
+      </code></pre>
+      <p class="has-line-data" data-line-start="357" data-line-end="358">Headers example:</p>
+      <pre><code class="has-line-data" data-line-start="359" data-line-end="362">Content-Type: application/json
+      Accept: application/json
+      </code></pre>
+      <p class="has-line-data" data-line-start="362" data-line-end="363">Body example:</p>
+      <pre><code class="has-line-data" data-line-start="364" data-line-end="370">{
+        &quot;origin&quot;: &quot;broomfield,co&quot;,
+        &quot;destination&quot;: &quot;estes park,co&quot;,
+        &quot;api_key&quot;: &quot;2spUUHk5he9QyaejKsPKcYV6&quot;
+      }
+      </code></pre>
+      <p class="has-line-data" data-line-start="371" data-line-end="372">Example response:</p>
+      <pre><code class="has-line-data" data-line-start="373" data-line-end="389" class="language-json">{
+          "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"roadTrip"</span></span>,
+              "<span class="hljs-attribute">attributes</span>": <span class="hljs-value">{
+                  "<span class="hljs-attribute">travelTime</span>": <span class="hljs-value"><span class="hljs-string">"1 hour 8 mins"</span></span>,
+                  "<span class="hljs-attribute">forecast</span>": <span class="hljs-value">{
+                      "<span class="hljs-attribute">summary</span>": <span class="hljs-value"><span class="hljs-string">"Clear"</span></span>,
+                      "<span class="hljs-attribute">temperature</span>": <span class="hljs-value"><span class="hljs-number">27.7</span>
+                  </span>}</span>,
+                  "<span class="hljs-attribute">origin</span>": <span class="hljs-value"><span class="hljs-string">"broomfield, co"</span></span>,
+                  "<span class="hljs-attribute">destination</span>": <span class="hljs-value"><span class="hljs-string">"estes park, co"</span>
+              </span>}
+          </span>}
+      </span>}
+      </code></pre>
+      <p class="has-line-data" data-line-start="390" data-line-end="391">If there is a problem with the API key provided, a JSON:API error object will be returned containing details.</p>
+      <p class="has-line-data" data-line-start="392" data-line-end="393">Error example:</p>
+      <pre><code class="has-line-data" data-line-start="394" data-line-end="408" class="language-json">{
+          "<span class="hljs-attribute">errors</span>": <span class="hljs-value">[
+              {
+                  "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"401"</span></span>,
+                  "<span class="hljs-attribute">source</span>": <span class="hljs-value">{
+                      "<span class="hljs-attribute">pointer</span>": <span class="hljs-value"><span class="hljs-string">"/api/v1/road_trip"</span></span>,
+                      "<span class="hljs-attribute">parameter</span>": <span class="hljs-value"><span class="hljs-string">"api_key"</span>
+                  </span>}</span>,
+                  "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Unauthorized Request"</span></span>,
+                  "<span class="hljs-attribute">detail</span>": <span class="hljs-value"><span class="hljs-string">"The API key provided was invalid."</span>
+              </span>}
+          ]
+      </span>}
+      </code></pre>
+      <h3 class="code-line" data-line-start=409 data-line-end=410 ><a id="munchies"></a>Munchies</h3>
+      <p class="has-line-data" data-line-start="411" data-line-end="412">Submit start and end locations and a preferred food type, and receive information about travel time, weather conditions upon arrival, and the closest restaurant to your arrival location that will be open at your arrival time.</p>
+      <p class="has-line-data" data-line-start="413" data-line-end="414">Endpoint:</p>
+      <pre><code class="has-line-data" data-line-start="415" data-line-end="417">/munchies
+      </code></pre>
+      <p class="has-line-data" data-line-start="418" data-line-end="419">Query Parameter(s):</p>
+      <ul>
+      <li class="has-line-data" data-line-start="419" data-line-end="420"><code>start</code>, which should be a string containing a city and state, comma-separated (e.g., “denver,co”).</li>
+      <li class="has-line-data" data-line-start="420" data-line-end="421"><code>end</code>, which should be another string containing a city and state, comma-separated (e.g., “pueblo,co”).</li>
+      <li class="has-line-data" data-line-start="421" data-line-end="423"><code>food</code>, a preferred food type as a string value.</li>
+      </ul>
+      <p class="has-line-data" data-line-start="423" data-line-end="424">Example request:</p>
+      <pre><code class="has-line-data" data-line-start="425" data-line-end="427">GET http://whether-sweater-df.herokuapp.com/api/v1/munchies?start=indianapolis,in&amp;end=chicago,il&amp;food=donuts
+      </code></pre>
+      <p class="has-line-data" data-line-start="428" data-line-end="429">Example response:</p>
+      <pre><code class="has-line-data" data-line-start="430" data-line-end="446" class="language-json">{
+          "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"munchies"</span></span>,
+              "<span class="hljs-attribute">attributes</span>": <span class="hljs-value">{
+                  "<span class="hljs-attribute">travel_time</span>": <span class="hljs-value"><span class="hljs-string">"2 hours 56 mins"</span></span>,
+                  "<span class="hljs-attribute">forecast</span>": <span class="hljs-value"><span class="hljs-string">"Possible Light Snow"</span></span>,
+                  "<span class="hljs-attribute">end_location</span>": <span class="hljs-value"><span class="hljs-string">"Chicago, IL"</span></span>,
+                  "<span class="hljs-attribute">restaurant</span>": <span class="hljs-value">{
+                      "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Bridgeport Bakery"</span></span>,
+                      "<span class="hljs-attribute">address</span>": <span class="hljs-value"><span class="hljs-string">"2907 S Archer Ave, Chicago, IL 60608"</span>
+                  </span>}
+              </span>}
+          </span>}
+      </span>}
+      </code></pre>
     </main>
     <footer>
       <p>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></p>
