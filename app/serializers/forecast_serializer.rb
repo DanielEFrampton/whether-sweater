@@ -11,7 +11,7 @@ class ForecastSerializer
              :state,
              :country,
              :temperature,
-             :feelsLike,
+             :feels_like,
              :day_temperature_high,
              :day_temperature_low,
              :summary,
