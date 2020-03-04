@@ -1,5 +1,5 @@
 class CurrentForecast
-  attr_reader :time, :timezone_offset, :summary
+  attr_reader :time, :timezone_offset, :summary, :uv_exposure_category
 
   def initialize(current_data:, today_data:, offset:, timezone:)
     @feels_like = current_data[:apparentTemperature]
@@ -15,10 +15,12 @@ class CurrentForecast
     @today_summary = today_data[:summary]
     @timezone_offset = offset
     @timezone = timezone
-    @uv_exposure_category = uv_exposure_category
+    @uv_exposure_category = calculate_uv_exposure_category
   end
 
-  def uv_exposure_category
+  private
+
+  def calculate_uv_exposure_category
     return 'low' if [0, 1, 2].include?(@uv_index)
     return 'moderate' if [3, 4, 5].include?(@uv_index)
     return 'high' if [6, 7].include?(@uv_index)
