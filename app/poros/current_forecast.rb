@@ -1,7 +1,7 @@
 class CurrentForecast
   attr_reader :time, :timezone_offset, :summary, :uv_exposure_category
 
-  def initialize(current_data:, today_data:, offset:, timezone:)
+  def initialize(current_data:, today_data:, offset:, timezone:) # rubocop:disable Metrics/MethodLength
     @feels_like = current_data[:apparentTemperature]
     @humidity = current_data[:humidity]
     @icon = current_data[:icon]
