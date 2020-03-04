@@ -16,24 +16,28 @@ describe 'As a developer of the front-end', :vcr do
       expected_json = JSON.generate({
         'data': {
           'attributes': {
-            'time': '1583010500',
-            'timezoneOffset': -7,
-            'timezone': 'America/Denver',
-            'city': 'Denver',
-            'state': 'CO',
-            'country': 'United States',
-            'temperature': 54.3,
-            'feelsLike': 54.3,
-            'dayTemperatureHigh': 57.41,
-            'dayTemperatureLow': 31.44,
-            'summary': 'Overcast',
-            'icon': 'cloudy',
-            'humidity': 0.16,
-            'uvIndex': 3,
-            'uvExposureCategory': 'moderate',
-            'visibility': 10.00,
-            'todaySummary': 'Overcast throughout the day.',
-            'tonightSummary': '',
+            'location': {
+              'city': 'Denver',
+              'state': 'CO',
+              'country': 'United States'
+            },
+            'current_forecast': {
+              'time': '1583010500',
+              'timezoneOffset': -7,
+              'timezone': 'America/Denver',
+              'temperature': 54.3,
+              'feelsLike': 54.3,
+              'dayTemperatureHigh': 57.41,
+              'dayTemperatureLow': 31.44,
+              'summary': 'Overcast',
+              'icon': 'cloudy',
+              'humidity': 0.16,
+              'uvIndex': 3,
+              'uvExposureCategory': 'moderate',
+              'visibility': 10.00,
+              'todaySummary': 'Overcast throughout the day.'
+            },
+            'tonightSummary': 'Clear',
             'hourlyForecasts': [
               {
                 'time': '1583013600',
