@@ -1,6 +1,10 @@
 class ForecastFacade
-  attr_reader :hourly_forecasts, :daily_forecasts, :current_forecast, :location,
-              :tonight_summary, :id
+  attr_reader :hourly_forecasts,
+              :daily_forecasts,
+              :current_forecast,
+              :location,
+              :tonight_summary,
+              :id
 
   def initialize(weather:, geocode:)
     @id = nil
@@ -24,10 +28,10 @@ class ForecastFacade
   private
 
   def make_current_forecast(data)
-    current_options = {current_data: data['currently'].symbolize_keys,
-                       today_data: data['daily']['data'][0].symbolize_keys,
-                       offset: data['offset'],
-                       timezone: data['timezone']}
+    current_options = { current_data: data['currently'].symbolize_keys,
+                        today_data: data['daily']['data'][0].symbolize_keys,
+                        offset: data['offset'],
+                        timezone: data['timezone'] }
     CurrentForecast.new(current_options)
   end
 
@@ -41,8 +45,12 @@ class ForecastFacade
 
   def make_daily_forecasts(days)
     days.map do |d|
-      opt = d.slice('time','icon','temperatureHigh','temperatureLow','humidity')
-      opt = opt.transform_keys { |key| key.underscore }
+      opt = d.slice('time',
+                    'icon',
+                    'temperatureHigh',
+                    'temperatureLow',
+                    'humidity')
+      opt = opt.transform_keys(&:underscore)
       opt = opt.symbolize_keys
       DailyForecast.new(opt)
     end

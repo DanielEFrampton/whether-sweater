@@ -1,5 +1,9 @@
 class DailyForecast
-  attr_reader :time, :icon, :temperature_high, :temperature_low, :humidity,
+  attr_reader :time,
+              :icon,
+              :temperature_high,
+              :temperature_low,
+              :humidity,
               :weekday
 
   def initialize(time:, icon:, temperature_high:, temperature_low:, humidity:)
@@ -12,7 +16,7 @@ class DailyForecast
   end
 
   private
-  
+
   def calculate_weekday
     Time.at(@time).to_datetime.strftime('%A')
   end
