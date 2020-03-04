@@ -19,8 +19,8 @@ class YelpService
   end
 
   def format_response(restaurant_data)
-    { name: restaurant_data['businesses'][0]['name'],
-      address: restaurant_data['businesses'][0]['location']['display_address'].join(', ')
-    }
+    business = restaurant_data['businesses'][0]
+    { name: business['name'],
+      address: business['location']['display_address'].join(', ') }
   end
 end

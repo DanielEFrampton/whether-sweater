@@ -1,0 +1,39 @@
+# inherit_from: .rubocop_todo.yml
+
+# Rubocop configuration file
+
+# Exclude every directory except /app
+AllCops:
+  Exclude:
+    - bin/**/*
+    - config/**/*
+    - coverage/**/*
+    - db/**/*
+    - lib/**/*
+    - log/**/*
+    - public/**/*
+    - spec/**/*
+    - storage/**/*
+    - tmp/**/*
+    - vendor/**/*
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Layout/LineLength:
+  AutoCorrect: true
+
+Layout/MultilineMethodArgumentLineBreaks:
+  Enabled: true
