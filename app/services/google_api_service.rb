@@ -17,7 +17,11 @@ class GoogleApiService
   end
 
   def get_distance(start_location, end_location)
-    response = connection.get("distancematrix/json?units=imperial&origins=#{start_location}&destinations=#{end_location}")
+    response = connection.get('distancematrix/json') do |request|
+      request.params['units'] = 'imperial'
+      request.params['origins'] = start_location
+      request.params['destinations'] = end_location
+    end
     JSON.parse(response.body)
   end
 
@@ -40,13 +44,14 @@ class GoogleApiService
   end
 
   def format_distance_data(data)
+    duration = data['rows'][0]['elements'][0]['duration']
     {
-      travel_time: data['rows'][0]['elements'][0]['duration']['text'],
-      arrival_timestamp: arrival_timestamp(data['rows'][0]['elements'][0]['duration']['value'])
+      travel_time: duration['text'],
+      arrival_time: arrival_time(duration['value'])
     }
   end
 
-  def arrival_timestamp(seconds)
+  def arrival_time(seconds)
     Time.now.to_i + seconds
   end
 end

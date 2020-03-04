@@ -4,11 +4,12 @@ class Api::V1::UsersController < ApplicationController
     if user.save
       render json: UserSerializer.new(user), status: 201
     else
-      render json: ErrorSerializer.new(detail: user.errors.full_messages.join(', ').concat('.'),
-                                       title: 'Invalid Request',
-                                       status: registration_failure_status,
-                                       pointer: request.env['PATH_INFO'],
-                                       parameter: error_parameters(user)).errors, status: registration_failure_status
+      render json: Error.new(detail: user.errors.full_messages.join(', ') + '.',
+                             title: 'Invalid Request',
+                             status: registration_failure_status,
+                             pointer: request.env['PATH_INFO'],
+                             parameter: error_parameters(user)).errors,
+             status: registration_failure_status
     end
   end
 

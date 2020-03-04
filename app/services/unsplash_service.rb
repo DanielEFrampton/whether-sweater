@@ -8,13 +8,13 @@ class UnsplashService
 
   def get_background_url(location)
     city = location.gsub(',', ', ')
-    response = Faraday.get('https://api.unsplash.com/search/photos') do |request|
-      request.headers['Authorization'] = "Client-ID #{ENV['UNSPLASH_ACCESS_KEY']}"
-      request.headers['Accept-Version'] = 'v1'
-      request.params['orientation'] = 'landscape'
-      request.params['query'] = city
-      request.params['page'] = 1
-      request.params['per_page'] = 1
+    response = Faraday.get('https://api.unsplash.com/search/photos') do |req|
+      req.headers['Authorization'] = "Client-ID #{ENV['UNSPLASH_ACCESS_KEY']}"
+      req.headers['Accept-Version'] = 'v1'
+      req.params['orientation'] = 'landscape'
+      req.params['query'] = city
+      req.params['page'] = 1
+      req.params['per_page'] = 1
     end
     JSON.parse(response.body)['results'][0]['urls']['raw']
   end

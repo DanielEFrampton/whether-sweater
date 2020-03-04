@@ -18,9 +18,9 @@ RSpec.describe DarkSkyService, :vcr do
       end
     end
 
-    describe 'simple_future_forecast' do
+    describe 'future_forecast' do
       it 'returns object initialized with temperature and summary of weather at future time at given lat/long' do
-        data = DarkSkyService.new.simple_future_forecast('39.7392358','-104.990251',1583179830)
+        data = DarkSkyService.new.future_forecast('39.7392358','-104.990251',1583179830)
         expect(data).to be_instance_of(FutureForecastResults)
         expect(data.summary).to eq('Clear')
         expect(data.temperature).to eq(47.74)

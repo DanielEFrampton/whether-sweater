@@ -28,7 +28,7 @@ class Forecast
     @timezone_offset = weather_info['offset']
     @timezone = weather_info['timezone']
     @temperature = weather_info['currently']['temperature']
-    @feelsLike = weather_info['currently']['apparentTemperature']
+    @feels_like = weather_info['currently']['apparentTemperature']
     @day_temperature_high = weather_info['daily']['data'][0]['temperatureHigh']
     @day_temperature_low = weather_info['daily']['data'][0]['temperatureLow']
     @summary = weather_info['currently']['summary']
