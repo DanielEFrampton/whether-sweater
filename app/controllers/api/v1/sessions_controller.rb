@@ -16,7 +16,7 @@ class Api::V1::SessionsController < ApplicationController
   end
 
   def error(parameter)
-    generate_error(detail: 'Invalid' + parameter,
+    generate_error(detail: 'Invalid ' + parameter + '.',
                    title: 'Invalid Credentials',
                    parameter: parameter)
   end
