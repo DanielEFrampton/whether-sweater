@@ -4,8 +4,7 @@ class Api::V1::UsersController < ApplicationController
     if user.save
       render json: UserSerializer.new(user), status: 201
     else
-      render json: generate_error(user),
-             status: registration_failure_status
+      render json: error(user), status: 400
     end
   end
 
@@ -15,8 +14,10 @@ class Api::V1::UsersController < ApplicationController
     params.permit(:email, :password, :password_confirmation)
   end
 
-  def registration_failure_status
-    400
+  def error(object)
+    generate_error(detail: error_details(object),
+                   parameter: error_parameters(object),
+                   title: 'Invalid Request')
   end
 
   def error_parameters(object)
@@ -25,11 +26,7 @@ class Api::V1::UsersController < ApplicationController
     end.join(', ')
   end
 
-  def generate_error(user)
-    Error.new(detail: user.errors.full_messages.join(', ') + '.',
-              title: 'Invalid Request',
-              status: registration_failure_status,
-              pointer: request.env['PATH_INFO'],
-              parameter: error_parameters(user)).errors
+  def error_details(object)
+    object.errors.full_messages.join(', ') + '.'
   end
 end
