@@ -1,4 +1,4 @@
-class Error
+class ErrorSerializer
   def initialize(detail:, status:, title:, pointer:, parameter:)
     @detail = detail
     @status = status
